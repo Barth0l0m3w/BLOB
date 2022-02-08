@@ -6,7 +6,11 @@ public class MyGame : Game
 {
 	public MyGame() : base(800, 600, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
+		Board board = new Board();
+		AddChild(board);
 
+		Blob blob = new Blob();
+		AddChild(blob);
 	}
 
 	// For every game object, Update is called every frame, by the engine:
