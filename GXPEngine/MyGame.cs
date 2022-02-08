@@ -25,6 +25,8 @@ public class MyGame : Game
 	void Update()
 	{
 		// Empty
+		//bababababababababababababba
+		
 	}
 
 	static void Main()							// Main() is the first method that's called when the program is run
