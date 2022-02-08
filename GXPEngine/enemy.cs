@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using GXPEngine;
 
-class Enemy
+public class Enemy : Sprite
 {
-
-}
+    float speedY = 0.2f;
+    
+} 

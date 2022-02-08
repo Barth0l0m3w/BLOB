@@ -13,16 +13,13 @@ public class MyGame : Game
 		AddChild(blob);
 	}
 
-	// For every game object, Update is called every frame, by the engine:
 	void Update()
 	{
 		// Empty
-		//bababababababababababababba
-		
 	}
 
-	static void Main()							// Main() is the first method that's called when the program is run
+	static void Main()
 	{
-		new MyGame().Start();					// Create a "MyGame" and start it
+		new MyGame().Start();
 	}
 }

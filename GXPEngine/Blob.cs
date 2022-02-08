@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using GXPEngine;
 
     public class Blob : Sprite
@@ -29,9 +28,6 @@ using GXPEngine;
         {
             Respawn();
         }
-
-
-
     }
 
     private void StartGame() {
@@ -40,7 +36,6 @@ using GXPEngine;
             speedY = 5.0f;
 
         }
-
     }
 
     void OnCollision(GameObject other)
@@ -49,10 +44,7 @@ using GXPEngine;
             //speedX = board.speedX;
             speedY *= -1;
         }
-
     }
-
-    
 
     void Respawn()
     {

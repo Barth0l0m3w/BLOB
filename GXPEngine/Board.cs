@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using GXPEngine;
 
 
     public class Board: Sprite
     {
+
     public float speedX = 0f;
-    //float speedY = 0f;
+
     public Board() : base("square.png")
     {
         this.x = game.width / 2;
         this.y = game.height - 100;
-
     }
 
     void Update()
@@ -38,13 +37,11 @@ using GXPEngine;
     {
         if (Input.GetKey(Key.LEFT))
         {
-            speedX -= 1.0f;
-
+            speedX -= 0.3f;
         }
         if (Input.GetKey(Key.RIGHT))
         {
-            speedX += 1.0f;
-
+            speedX += 0.3f;
         }
         x += speedX;
         speedX *= 0.9f;
@@ -52,8 +49,6 @@ using GXPEngine;
     void OnCollision(GameObject other)
     {
     
-        
-
     }
 }
 
