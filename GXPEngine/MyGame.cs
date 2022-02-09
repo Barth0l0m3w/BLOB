@@ -11,6 +11,9 @@ public class MyGame : Game
 
 		Blob blob = new Blob();
 		AddChild(blob);
+
+		Enemy enemy = new Enemy();
+		AddChild(enemy);
 	}
 
 	void Update()
