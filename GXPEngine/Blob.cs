@@ -24,7 +24,7 @@ using GXPEngine;
             speedY *= -1;
         }
 
-        if (y > 600 + height)
+        if (y > game.height + height)
         {
             Respawn();
         }

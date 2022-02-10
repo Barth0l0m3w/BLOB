@@ -8,21 +8,25 @@ public class Enemy : Sprite
 {
     private float radians;
     private float radius;
+    private float speed = 0.2f;
     
 
     public Enemy():base ("crab.png")
     {
-        //SetOrigin(width / 2, height / 2);
+        width *= (int)0.5f;
+        height *= (int)1;
+
+        SetOrigin(width / 2, height / 2);
         radians = 0;
-        x = (game.width - this.width) / 2;
-        y = (game.height - this.height) / 2;
-        SetScaleXY(0.3f, 0.3f);
+        SetXY(Utils.Random(width, game.width), 20);//Utils.Random(-300, 0));
+        SetScaleXY(0.1f, 0.1f);
     }
 
     void Update()
     {
         radius = 100;
-        radians += 0.05f;
+        radians += 0.02f;
+        y += speed;
 
         float myX = radius * Mathf.Cos(radians);
         x = myX;

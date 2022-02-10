@@ -21,9 +21,9 @@ using GXPEngine;
         applyWalking();
         //applyGravity();
 
-        if (x > 800 - width)
+        if (x > game.width - width)
         {
-            x = 799 - width;
+            x = game.width - width;
         }
 
         if (x < 0)
