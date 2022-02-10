@@ -1,28 +1,45 @@
 using System;									// System contains a lot of default C# libraries 
 using GXPEngine;                                // GXPEngine contains the engine
 using System.Drawing;							// System.Drawing contains drawing tools such as Color definitions
+using System.Collections.Generic;
 
 public class MyGame : Game
 {
-	public MyGame() : base(800, 600, false)		// Create a window that's 800x600 and NOT fullscreen
+	//float enemies = 0;
+
+	public List<Enemy> enemies = new List<Enemy>();
+	public List<Enemy> toAddEnemy = new List<Enemy>();
+	public MyGame() : base(1366, 768, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
+		Sprite sprite = new Sprite("main_background.png ");
+		AddChild(sprite);
+
 		Board board = new Board();
 		AddChild(board);
 
 		Blob blob = new Blob();
 		AddChild(blob);
-	}
 
-	// For every game object, Update is called every frame, by the engine:
-	void Update()
-	{
-		// Empty
-		//bababababababababababababba
+		Enemy enemy = new Enemy();
+		AddChild(enemy);
+		
+
+		for (int i = 0; i < 5; ++i)
+        {
+			Enemy enemies = new Enemy();
+			AddChild(enemies);
+        }
 		
 	}
 
-	static void Main()							// Main() is the first method that's called when the program is run
+	void Update()
+
 	{
-		new MyGame().Start();					// Create a "MyGame" and start it
+
+	}
+
+	static void Main()
+	{
+		new MyGame().Start();
 	}
 }
