@@ -17,7 +17,6 @@ public class Enemy : Sprite
         SetOrigin(width / 2, height / 2);
         radians = 0;
         SetXY(Utils.Random(100, game.width - 100) , Utils.Random(-200, 0));
-        //Set.Rotation(90);
     }
 
     void Update()
@@ -52,7 +51,6 @@ public class Enemy : Sprite
         if (other is Blob)
         {
             Respawn();
-
         }
     }
 }
