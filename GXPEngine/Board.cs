@@ -10,11 +10,11 @@ using GXPEngine;
 
     public float speedX = 0f;
 
-    public Board() : base("square.png")
+    public Board() : base("platform.png")
     {
         this.x = game.width / 2;
         this.y = game.height - 100;
-        SetScaleXY(3, 1);
+
     }
 
     void Update()

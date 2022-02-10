@@ -8,16 +8,16 @@ public class Enemy : Sprite
 {
     private float radians;
     private float radius;
-    private float speed = 0.2f;
+    private float speed = 1f;
     
 
-    public Enemy():base ("circle.png")
+    public Enemy():base ("squid.png")
     {
-
+        Respawn();
         SetOrigin(width / 2, height / 2);
         radians = 0;
         SetXY(Utils.Random(100, game.width - 100) , Utils.Random(-200, 0));
-
+        //Set.Rotation(90);
     }
 
     void Update()
@@ -29,15 +29,30 @@ public class Enemy : Sprite
         float myX = radius * Mathf.Cos(radians);
         x += myX;
 
+        this.rotation += 1;
+
+        if (y > game.height + height)
+        {
+            Respawn();
+        }
+
         /*
         Console.WriteLine(width);
         Console.WriteLine(myX);
         Console.WriteLine(game.width);
        */
     }
-
-    void Colission()
+    void Respawn()
     {
+        SetXY(Utils.Random(100, game.width - 100), Utils.Random(-200, 0));
+    }
 
+    void OnCollision(GameObject other)
+    {
+        if (other is Blob)
+        {
+            Respawn();
+
+        }
     }
 }
