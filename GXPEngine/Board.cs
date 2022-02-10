@@ -14,6 +14,7 @@ using GXPEngine;
     {
         this.x = game.width / 2;
         this.y = game.height - 100;
+        SetScaleXY(3, 1);
     }
 
     void Update()

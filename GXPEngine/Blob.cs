@@ -9,7 +9,7 @@ using GXPEngine;
     float speedX = 0f;
     float speedY = 0f;
     Board board;
-    public Blob() : base("circle.png")
+    public Blob() : base("blob.png")
     {
         Respawn();
 

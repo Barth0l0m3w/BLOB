@@ -8,7 +8,7 @@ public class MyGame : Game
 	//float enemies = 0;
 	public List<Enemy> enemies = new List<Enemy>();
 	public List<Enemy> toAddEnemy = new List<Enemy>();
-	public MyGame() : base(1920, 1080, false)		// Create a window that's 800x600 and NOT fullscreen
+	public MyGame() : base(1366, 768, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
 		Board board = new Board();
 		AddChild(board);
@@ -30,7 +30,7 @@ public class MyGame : Game
 
 	void Update()
 	{
-		//Console.WriteLine(Enemy.width);
+
 	}
 
 	static void Main()
