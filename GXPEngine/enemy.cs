@@ -29,9 +29,15 @@ public class Enemy : Sprite
         float myX = radius * Mathf.Cos(radians);
         x += myX;
 
-
+        /*
         Console.WriteLine(width);
         Console.WriteLine(myX);
         Console.WriteLine(game.width);
+       */
+    }
+
+    void Colission()
+    {
+
     }
 }
