@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using GXPEngine;
 
-    public class Blob : Sprite
+    public class Blob : AnimationSprite
     {
+    public bool collide = false;
+
     float speedX = 0f;
     float speedY = 0f;
     Board board;
-    public Blob() : base("blob.png")
+    public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
+        SetOrigin(height / 2, width / 2);
         Respawn();
 
     }
@@ -28,6 +31,7 @@ using GXPEngine;
         {
             Respawn();
         }
+        AnimateCharacter();
     }
 
     private void StartGame() {
@@ -43,6 +47,11 @@ using GXPEngine;
         if (other is Board) {
             //speedX = board.speedX;
             speedY *= -1;
+            collide = true;
+            //delta time timer that switches the collide off when done 
+        } else
+        {
+            
         }
     }
 
@@ -53,5 +62,19 @@ using GXPEngine;
         speedY = 0;
     }
 
+    void AnimateCharacter()
+    {
+
+        if (collide == true)
+        {
+            SetCycle(1, 7);
+        }
+        else
+        {
+            SetCycle(0, 1);
+
+        }
+        Animate(0.2f);
+    }
 }
 
