@@ -8,6 +8,10 @@ using GXPEngine;
     {
     float speedX = 0f;
     float speedY = 0f;
+
+    float dirX = 1.0f;
+    float dirY = 1.0f;
+
     Board board;
     public Blob() : base("blob.png")
     {
@@ -17,23 +21,19 @@ using GXPEngine;
     void Update()
     {
         StartGame();
-        y += speedY;
+        Bounce();
 
-        if (y < 0 - height)
-        {
-            speedY *= -1;
-        }
+        x += speedX * dirX;
+        y += speedY * dirY;
 
-        if (y > game.height + height)
-        {
-            Respawn();
-        }
+        
     }
 
     private void StartGame() {
         if (Input.GetKey(Key.SPACE))
         {
-            speedY = 5.0f;
+            speedX = Utils.Random(-2, 2.1f);
+            speedY = 2.0f;
 
         }
     }
@@ -41,8 +41,14 @@ using GXPEngine;
     void OnCollision(GameObject other)
     {
         if (other is Board) {
-            //speedX = board.speedX;
-            speedY *= -1;
+            dirX *= -1;
+            dirY *= -1;
+        }
+        if (other is Enemy)
+        {
+            dirX *= -1;
+            dirY *= -1;
+            Console.WriteLine("hit");
         }
     }
 
@@ -50,7 +56,31 @@ using GXPEngine;
     {
         x = (game.width - this.width) / 2;
         y = (game.height - this.height) / 2;
+        speedX = 0;
         speedY = 0;
+    }
+
+    void Bounce() {
+        if (y < 0 - height)
+        {
+            dirY *= -1;
+        }
+
+        if (y > game.height + height)
+        {
+            Respawn();
+        }
+
+        if (x < 0 - width / 2)
+        {
+            dirX *= -1;
+        }
+
+        if (y > game.width + width)
+        {
+            dirX *= -1;
+        }
+
     }
 
 }

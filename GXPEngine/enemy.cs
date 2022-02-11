@@ -50,7 +50,7 @@ public class Enemy : Sprite
     {
         if (other is Blob)
         {
-            Respawn();
+            LateDestroy();
         }
     }
 }
