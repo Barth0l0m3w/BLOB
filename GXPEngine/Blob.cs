@@ -76,7 +76,7 @@ using GXPEngine;
             dirX *= -1;
         }
 
-        if (y > game.width + width)
+        if (x > game.width + width)
         {
             dirX *= -1;
         }

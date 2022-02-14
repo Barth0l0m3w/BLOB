@@ -50,7 +50,10 @@ public class Enemy : Sprite
     {
         if (other is Blob)
         {
+            //  Time.deltaTime
+            //
             LateDestroy();
+           //espawn();
         }
     }
 }
