@@ -8,14 +8,23 @@ using GXPEngine;
     {
     public bool collide = false;
 
-    float speedX = 0f;
+    //float speedX = 0f;
     float speedY = 0f;
-    Board board;
+    //Board board;
+
+    private float timer = 1.4f;
+    private float waitTime = 0.0f;
+    //private float animTimer = 0.0f;
+    //private bool timerDone = false;
+
+    const int NORMAL = 0;
+    const int BOUNCING = 1;
+    int currentState = NORMAL;
     public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
         SetOrigin(height / 2, width / 2);
         Respawn();
-
+        
     }
     void Update()
     {
@@ -31,14 +40,26 @@ using GXPEngine;
         {
             Respawn();
         }
+
         AnimateCharacter();
+        TimerCycle();
+
+        timer += Time.deltaTime;
+        if (collide)
+        { 
+            if (timer > waitTime)
+            {
+                timer = timer - waitTime;
+                collide = false;
+                //timerDone = true;
+            }
+        }
     }
 
     private void StartGame() {
         if (Input.GetKey(Key.SPACE))
         {
-            speedY = 5.0f;
-
+            speedY = 1.0f;
         }
     }
 
@@ -64,17 +85,28 @@ using GXPEngine;
 
     void AnimateCharacter()
     {
-
-        if (collide == true)
+        switch (currentState)
         {
+            case BOUNCING:
             SetCycle(1, 7);
-        }
-        else
-        {
+                Animate(0.2f);
+                break;
+            case NORMAL:
             SetCycle(0, 1);
-
+                Animate(0.2f);
+                break;
         }
-        Animate(0.2f);
     }
+
+    void TimerCycle()
+    {
+        if (collide)
+        {
+            currentState = BOUNCING;
+        } else
+        {
+            currentState = NORMAL;
+        }
+    } 
 }
 
