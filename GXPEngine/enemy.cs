@@ -9,7 +9,6 @@ public class Enemy : Sprite
     private float radians;
     private float radius;
     private float speed = 1f;
-    
 
     public Enemy():base ("squid.png")
     {
@@ -34,13 +33,8 @@ public class Enemy : Sprite
         {
             Respawn();
         }
-
-        /*
-        Console.WriteLine(width);
-        Console.WriteLine(myX);
-        Console.WriteLine(game.width);
-       */
     }
+
     void Respawn()
     {
         SetXY(Utils.Random(100, game.width - 100), Utils.Random(-200, 0));

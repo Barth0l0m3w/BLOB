@@ -21,7 +21,6 @@ using GXPEngine;
     void Update()
     {
         applyWalking();
-        //applyGravity();
 
         if (x > game.width - width)
         {
