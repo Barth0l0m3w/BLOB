@@ -6,16 +6,16 @@ using GXPEngine;
 
     public class Blob : AnimationSprite
     {
-    public bool collide = false;
+    public bool hasColided;
 
     //float speedX = 0f;
     float speedY = 0f;
-    //Board board;
+    
 
-    private float timer = 1.4f;
-    private float waitTime = 0.0f;
-    //private float animTimer = 0.0f;
-    //private bool timerDone = false;
+    private float timer = 0;
+    private float animTimer = 0;
+    private float waitTime = 0.4f;
+    
 
     const int NORMAL = 0;
     const int BOUNCING = 1;
@@ -31,12 +31,12 @@ using GXPEngine;
         StartGame();
         y += speedY;
 
-        if (y < 0 - height)
+        if (y < 0)
         {
             speedY *= -1;
         }
 
-        if (y > game.height + height)
+        if (y > game.height - height)
         {
             Respawn();
         }
@@ -44,14 +44,18 @@ using GXPEngine;
         AnimateCharacter();
         TimerCycle();
 
-        timer += Time.deltaTime;
-        if (collide)
-        { 
-            if (timer > waitTime)
+        timer += Time.deltaTime / 1000.0f;
+        Console.WriteLine(animTimer);
+        if (hasColided)
+        {
+            //Console.WriteLine("hit");
+            animTimer += Time.deltaTime / 1000.0f;
+            if (animTimer > waitTime)
             {
-                timer = timer - waitTime;
-                collide = false;
-                //timerDone = true;
+                //Console.WriteLine("stop");
+                animTimer = 0;
+                hasColided = false;
+                
             }
         }
     }
@@ -66,14 +70,10 @@ using GXPEngine;
     void OnCollision(GameObject other)
     {
         if (other is Board) {
-            //speedX = board.speedX;
+            hasColided = true;
             speedY *= -1;
-            collide = true;
-            //delta time timer that switches the collide off when done 
-        } else
-        {
             
-        }
+        } 
     }
 
     void Respawn()
@@ -89,18 +89,19 @@ using GXPEngine;
         {
             case BOUNCING:
             SetCycle(1, 7);
-                Animate(0.2f);
+                Animate(0.05f);
                 break;
             case NORMAL:
             SetCycle(0, 1);
-                Animate(0.2f);
+                Animate(0.05f);
                 break;
+                
         }
     }
 
     void TimerCycle()
     {
-        if (collide)
+        if (hasColided)
         {
             currentState = BOUNCING;
         } else
