@@ -39,18 +39,14 @@ using GXPEngine;
     {
         if (Input.GetKey(Key.LEFT))
         {
-            speedX -= 0.3f;
+            speedX -= 0.8f;
         }
         if (Input.GetKey(Key.RIGHT))
         {
-            speedX += 0.3f;
+            speedX += 0.8f;
         }
         x += speedX;
         speedX *= 0.9f;
-    }
-    void OnCollision(GameObject other)
-    {
-    
     }
 }
 

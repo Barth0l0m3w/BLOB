@@ -5,17 +5,14 @@ using System.Text;
 using GXPEngine;
 
     public class Blob : AnimationSprite
-    {
+{
     public bool hasColided;
 
-    //float speedX = 0f;
+    float speedX = 0f;
     float speedY = 0f;
-
 
     float dirX = 1.0f;
     float dirY = 1.0f;
-
-    Board board;
     
     private float timer = 0;
     private float animTimer = 0;
@@ -24,8 +21,8 @@ using GXPEngine;
     const int NORMAL = 0;
     const int BOUNCING = 1;
     int currentState = NORMAL;
-    public Blob() : base("Blob_Spritesheet.png", 7, 1)
 
+    public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
         SetOrigin(height / 2, width / 2);
         Respawn();
@@ -36,11 +33,8 @@ using GXPEngine;
         StartGame();
         Bounce();
 
-
         x += speedX * dirX;
         y += speedY * dirY;
-
-        
 
         if (y < 0)
         {
@@ -69,7 +63,8 @@ using GXPEngine;
         }
     }
 
-    private void StartGame() {
+    private void StartGame() 
+    {
         if (Input.GetKey(Key.SPACE))
         {
             speedX = Utils.Random(-2, 2.1f);
@@ -79,18 +74,17 @@ using GXPEngine;
 
     void OnCollision(GameObject other)
     {
-        if (other is Board) {
+        if (other is Board) 
+        {
             dirX *= -1;
             dirY *= -1;
+            hasColided = true;
         }
         if (other is Enemy)
         {
             dirX *= -1;
             dirY *= -1;
-            Console.WriteLine("hit");
-        }
             hasColided = true;
-            speedY *= -1;
         } 
     }
 
@@ -102,7 +96,8 @@ using GXPEngine;
         speedY = 0;
     }
 
-    void Bounce() {
+    void Bounce() 
+    {
         if (y < 0 - height)
         {
             dirY *= -1;
@@ -123,7 +118,6 @@ using GXPEngine;
             dirX *= -1;
         }
     }
-
 
     void AnimateCharacter()
     {
