@@ -12,8 +12,9 @@ using GXPEngine;
 
     public Board() : base("platform.png")
     {
+        SetOrigin(height / 2, width / 2);
         this.x = game.width / 2;
-        this.y = game.height - 100;
+        this.y = game.height;
 
     }
 

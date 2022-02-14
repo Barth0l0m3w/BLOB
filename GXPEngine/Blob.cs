@@ -4,37 +4,76 @@ using System.Linq;
 using System.Text;
 using GXPEngine;
 
-    public class Blob : Sprite
+    public class Blob : AnimationSprite
     {
-    float speedX = 0f;
+    public bool hasColided;
+
+    //float speedX = 0f;
     float speedY = 0f;
+
 
     float dirX = 1.0f;
     float dirY = 1.0f;
 
     Board board;
-    public Blob() : base("blob.png")
-    {
-        Respawn();
+    
+    private float timer = 0;
+    private float animTimer = 0;
+    private float waitTime = 0.4f;
+    
+    const int NORMAL = 0;
+    const int BOUNCING = 1;
+    int currentState = NORMAL;
+    public Blob() : base("Blob_Spritesheet.png", 7, 1)
 
+    {
+        SetOrigin(height / 2, width / 2);
+        Respawn();
     }
+    
     void Update()
     {
         StartGame();
         Bounce();
 
+
         x += speedX * dirX;
         y += speedY * dirY;
 
         
+
+        if (y < 0)
+        {
+            speedY *= -1;
+        }
+
+        if (y > game.height - height)
+        {
+            Respawn();
+        }
+
+        AnimateCharacter();
+        TimerCycle();
+
+        timer += Time.deltaTime / 1000.0f;
+        Console.WriteLine(animTimer);
+        if (hasColided)
+        {
+            animTimer += Time.deltaTime / 1000.0f;
+            if (animTimer > waitTime)
+            {
+                animTimer = 0;
+                hasColided = false;
+                
+            }
+        }
     }
 
     private void StartGame() {
         if (Input.GetKey(Key.SPACE))
         {
             speedX = Utils.Random(-2, 2.1f);
-            speedY = 2.0f;
-
+            speedY = 4.0f;
         }
     }
 
@@ -50,6 +89,9 @@ using GXPEngine;
             dirY *= -1;
             Console.WriteLine("hit");
         }
+            hasColided = true;
+            speedY *= -1;
+        } 
     }
 
     void Respawn()
@@ -80,8 +122,33 @@ using GXPEngine;
         {
             dirX *= -1;
         }
-
     }
 
+
+    void AnimateCharacter()
+    {
+        switch (currentState)
+        {
+            case BOUNCING:
+            SetCycle(1, 7);
+                Animate(0.2f);
+                break;
+            case NORMAL:
+            SetCycle(0, 1);
+                Animate(0.2f);
+                break;
+        }
+    }
+
+    void TimerCycle()
+    {
+        if (hasColided)
+        {
+            currentState = BOUNCING;
+        } else
+        {
+            currentState = NORMAL;
+        }
+    } 
 }
 
