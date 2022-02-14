@@ -9,8 +9,10 @@ public class MyGame : Game
 
 	public List<Enemy> enemies = new List<Enemy>();
 	public List<Enemy> toAddEnemy = new List<Enemy>();
-	public MyGame() : base(1366, 768, false)		// Create a window that's 800x600 and NOT fullscreen
+	public MyGame() : base(1366, 768, false, false)	
 	{
+		targetFps = 60;
+
 		Sprite sprite = new Sprite("main_background.png ");
 		AddChild(sprite);
 

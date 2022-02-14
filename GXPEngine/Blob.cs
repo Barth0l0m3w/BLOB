@@ -48,11 +48,9 @@ using GXPEngine;
         Console.WriteLine(animTimer);
         if (hasColided)
         {
-            //Console.WriteLine("hit");
             animTimer += Time.deltaTime / 1000.0f;
             if (animTimer > waitTime)
             {
-                //Console.WriteLine("stop");
                 animTimer = 0;
                 hasColided = false;
                 
@@ -63,7 +61,7 @@ using GXPEngine;
     private void StartGame() {
         if (Input.GetKey(Key.SPACE))
         {
-            speedY = 1.0f;
+            speedY = 4.0f;
         }
     }
 
@@ -89,11 +87,11 @@ using GXPEngine;
         {
             case BOUNCING:
             SetCycle(1, 7);
-                Animate(0.05f);
+                Animate(0.2f);
                 break;
             case NORMAL:
             SetCycle(0, 1);
-                Animate(0.05f);
+                Animate(0.2f);
                 break;
                 
         }
