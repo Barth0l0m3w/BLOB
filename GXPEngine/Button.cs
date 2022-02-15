@@ -7,11 +7,11 @@ namespace GXPEngine
 {
     public class Button : Sprite 
     {
-        public Button(float CX, float CY) : base("startButton.png")
+        public Button(float CX, float CY, string image) : base(image)
         {
             x = CX;
             y = CY;
-
+            alpha = 0.7f;
 
         }
     }
