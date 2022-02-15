@@ -35,9 +35,8 @@ namespace GXPEngine
 
                 if (Input.GetKeyUp(Key.SPACE))
                 {
-                    StartLevel1();
-                    HideMenu();
-                    startButton.Destroy();
+                    //HideMenu();
+                    SceneManager.Instance.loadLevel("Level1");
                 }
           }
           if (buttonSelected == 2)
@@ -47,9 +46,9 @@ namespace GXPEngine
 
                 if (Input.GetKeyUp(Key.SPACE))
                 {
-                    StartLevel2();
-                    HideMenu();
-                    highScore.Destroy();
+                    //HideMenu();
+                    SceneManager.Instance.loadLevel("LevelHighScore");
+
                 }
           } 
           if (buttonSelected == 0)
@@ -59,23 +58,12 @@ namespace GXPEngine
             }
         }
 
-        void HideMenu()
+        /*void HideMenu()
         {
             startButton.visible = false;
             highScore.visible = false;
-        }
-
-        public void StartLevel1()
-        {
-            Level1 level1 = new Level1(1);
-            AddChild(level1);
-        }
-
-        public void StartLevel2()
-        {
-            LevelHighScore level2 = new LevelHighScore(1);
-            AddChild(level2);
-        }
+            LateDestroy();
+        }*/
 
         private void SelectNumber()
         {

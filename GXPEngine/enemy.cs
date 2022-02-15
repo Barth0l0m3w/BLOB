@@ -47,7 +47,7 @@ public class Enemy : Sprite
             //  Time.deltaTime
             //
             LateDestroy();
-           //espawn();
+           //respawn();
         }
     }
 }

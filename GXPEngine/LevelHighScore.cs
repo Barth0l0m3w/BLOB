@@ -12,11 +12,7 @@ namespace GXPEngine
 		public LevelHighScore(int levelNMB)
 		{
 			lvlNMB = levelNMB;
-			StartLevel();
-		}
 
-		public void StartLevel()
-		{
 			Sprite sprite = new Sprite("homescreen.png");
 			AddChild(sprite);
 		}

@@ -9,14 +9,13 @@ namespace GXPEngine
     {
 		int lvlNMB;
 
-		public Level1(int levelNMB)
-        {
-			lvlNMB = levelNMB;
-			StartLevel();
-        }
+		public List<Enemy> enemies = new List<Enemy>();
+		public List<Enemy> toAddEnemy = new List<Enemy>();
 
-		public void StartLevel()
-        {
+		public Level1(int levelNMB)
+		{
+			lvlNMB = levelNMB;
+
 			Sprite sprite = new Sprite("main_background.png ");
 			AddChild(sprite);
 
@@ -29,7 +28,10 @@ namespace GXPEngine
 			Enemy enemy = new Enemy();
 			AddChild(enemy);
 
+		}
 
+		private void EnemySpawn()
+        {
 			for (int i = 0; i < 5; ++i)
 			{
 				Enemy enemies = new Enemy();
