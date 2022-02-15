@@ -1,6 +1,6 @@
-using System;									// System contains a lot of default C# libraries 
-using GXPEngine;                                // GXPEngine contains the engine
-using System.Drawing;							// System.Drawing contains drawing tools such as Color definitions
+using System;									
+using GXPEngine;                                
+using System.Drawing;
 using System.Collections.Generic;
 
 public class MyGame : Game
@@ -9,10 +9,21 @@ public class MyGame : Game
 
 	public List<Enemy> enemies = new List<Enemy>();
 	public List<Enemy> toAddEnemy = new List<Enemy>();
-	public MyGame() : base(1366, 768, false)		// Create a window that's 800x600 and NOT fullscreen
+	public MyGame() : base(1366, 768, false)		
 	{
-		Sprite sprite = new Sprite("main_background.png ");
+
+		
+		Sprite sprite = new Sprite("main_background.png ", false, false);
 		AddChild(sprite);
+
+		WallSide wallLeft = new WallSide(0, game.height/2);
+		AddChild(wallLeft);
+
+		WallSide wallRight = new WallSide(game.width, game.height / 2);
+		AddChild(wallRight);
+
+		WallTop wallTop = new WallTop(game.width/2, 0);
+		AddChild(wallTop);
 
 		Board board = new Board();
 		AddChild(board);

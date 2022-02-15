@@ -12,6 +12,7 @@ using GXPEngine;
 
     public Board() : base("platform.png")
     {
+        SetOrigin(width / 2 , height / 2);
         this.x = game.width / 2;
         this.y = game.height - 100;
 
@@ -20,8 +21,9 @@ using GXPEngine;
     void Update()
     {
         applyWalking();
-        //applyGravity();
 
+        //applyGravity();
+        /*
         if (x > game.width - width)
         {
             x = game.width - width;
@@ -31,7 +33,7 @@ using GXPEngine;
         {
             x = 1;
         }
-
+        */
     }
 
     private void applyWalking()
@@ -44,7 +46,7 @@ using GXPEngine;
         {
             speedX += 0.3f;
         }
-        x += speedX;
+        MoveUntilCollision(speedX, 0);
         speedX *= 0.9f;
     }
     void OnCollision(GameObject other)

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GXPEngine;
+using GXPEngine.Core;
 
-    public class Blob : Sprite
+public class Blob : Sprite
     {
     float speedX = 0f;
     float speedY = 0f;
@@ -13,20 +14,30 @@ using GXPEngine;
     float dirY = 1.0f;
 
     Board board;
+
     public Blob() : base("blob.png")
     {
         Respawn();
+        
 
     }
     void Update()
     {
         StartGame();
-        Bounce();
+        //Bounce();
 
         x += speedX * dirX;
         y += speedY * dirY;
 
         
+
+        if (y > game.height - height)
+        {
+            Respawn();
+        }
+
+        
+
     }
 
     private void StartGame() {
@@ -40,16 +51,68 @@ using GXPEngine;
 
     void OnCollision(GameObject other)
     {
-        if (other is Board) {
-            dirX *= -1;
-            dirY *= -1;
+        var col = collider.GetCollisionInfo(other.collider);
+        Console.WriteLine("Collision normal{0}:", col.normal);
+        
+        if (other is WallSide || other is WallTop) { 
+            Console.WriteLine("Console normal wall:", col.normal.x, col.normal.y);
+            
+            if (col.normal.x < 0.5f && col.normal.y < 0.5f)
+            {
+                if (col.normal.x > col.normal.y)
+                {
+                    dirY *= -1;
+                }
+                if (col.normal.x < col.normal.y)
+                {
+                    dirX *= -1;
+                }
+            }
+            
+
         }
         if (other is Enemy)
         {
-            dirX *= -1;
-            dirY *= -1;
-            Console.WriteLine("hit");
+            if (col.normal.x < 0.5f && col.normal.y < 0.5f)
+            {
+                if (col.normal.x > col.normal.y)
+                {
+                    dirY *= -1;
+                }
+                if (col.normal.x < col.normal.y)
+                {
+                    dirX *= -1;
+                }
+            }
+            else{
+                dirX *= -1;
+                dirY *= -1;
+            }
+                
+                Console.WriteLine("Console normal enemy:", col.normal.x, col.normal.y);
+
         }
+        if (other is Board)
+        {
+            if (col.normal.x < 0.5f && col.normal.y < 0.5f)
+            {
+                if (col.normal.x > col.normal.y)
+                {
+                    dirY *= -1;
+                }
+                if (col.normal.x < col.normal.y)
+                {
+                    dirX *= -1;
+                }
+            }
+            else
+            {
+                dirX *= -1;
+                dirY *= -1;
+            }
+        }
+
+        
     }
 
     void Respawn()
@@ -76,7 +139,7 @@ using GXPEngine;
             dirX *= -1;
         }
 
-        if (x > game.width + width)
+        if (x > game.width - width)
         {
             dirX *= -1;
         }
