@@ -7,11 +7,11 @@ namespace GXPEngine
 {
 	public class LevelHighScore : GameObject
 	{
-		int lvlNMB;
+		//int lvlNMB;
 
-		public LevelHighScore(int levelNMB)
+		public LevelHighScore()
 		{
-			lvlNMB = levelNMB;
+			//lvlNMB = levelNMB;
 
 			Sprite sprite = new Sprite("homescreen.png");
 			AddChild(sprite);

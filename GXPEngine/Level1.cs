@@ -7,36 +7,60 @@ namespace GXPEngine
 {
     public class Level1 : GameObject
     {
-		int lvlNMB;
+        //int lvlNMB;
 
-		public List<Enemy> enemies = new List<Enemy>();
-		public List<Enemy> toAddEnemy = new List<Enemy>();
+        public List<Enemy> enemies;
+        public List<Enemy> toAddEnemy = new List<Enemy>();
 
-		public Level1(int levelNMB)
-		{
-			lvlNMB = levelNMB;
+        private float timer = 0;
+        private float animTimer = 0;
+        private float waitTime = 2;
 
-			Sprite sprite = new Sprite("main_background.png ");
-			AddChild(sprite);
-
-			Board board = new Board();
-			AddChild(board);
-
-			Blob blob = new Blob();
-			AddChild(blob);
-
-			Enemy enemy = new Enemy();
-			AddChild(enemy);
-
-		}
-
-		private void EnemySpawn()
+        public Level1()
         {
-			for (int i = 0; i < 5; ++i)
-			{
-				Enemy enemies = new Enemy();
-				AddChild(enemies);
-			}
-		}
-	}
+            enemies = new List<Enemy>();
+            AnimationSprite spriteSheet = new AnimationSprite("background_spritesheet.png ", 4, 1);
+            AddChild(spriteSheet);
+            spriteSheet.Animate(0.4f);
+
+            //Enemy enemy = new Enemy();
+            //AddChild(enemy);
+
+            Board board = new Board();
+            AddChild(board);
+
+            Blob blob = new Blob();
+            AddChild(blob);
+
+        }
+
+        private void EnemySpawn()
+        {
+
+            Enemy enemie = new Enemy();
+            AddChild(enemie);
+            enemies.Add(enemie);
+
+        }
+
+        void Update()
+        {
+            Console.WriteLine(enemies.Count);
+
+            timer += Time.deltaTime / 1000.0f;
+            //Console.WriteLine(animTimer);
+
+            animTimer += Time.deltaTime / 1000.0f;
+            if (animTimer >= waitTime)
+            {
+                if (enemies.Count < 2)
+                {
+                    EnemySpawn();
+                }
+                //Console.WriteLine("now");
+                animTimer = 0;
+            }
+
+        }
+    }
 }

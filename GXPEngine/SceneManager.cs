@@ -49,11 +49,11 @@ namespace GXPEngine
                     AddChild(mainMenu);
                     break;
                 case "LevelHighScore":
-                    LevelHighScore level2 = new LevelHighScore(1);
+                    LevelHighScore level2 = new LevelHighScore();
                     AddChild(level2);
                     break;
                 case "Level1":
-                    Level1 level1 = new Level1(1);
+                    Level1 level1 = new Level1();
                     AddChild(level1);
                     break;
                 default:

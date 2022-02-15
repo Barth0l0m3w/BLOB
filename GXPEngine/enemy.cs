@@ -10,6 +10,7 @@ public class Enemy : Sprite
     private float radius;
     private float speed = 1f;
 
+
     public Enemy():base ("squid.png")
     {
         Respawn();
