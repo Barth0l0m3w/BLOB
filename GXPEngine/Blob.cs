@@ -52,10 +52,10 @@ public class Blob : Sprite
     void OnCollision(GameObject other)
     {
         var col = collider.GetCollisionInfo(other.collider);
-        Console.WriteLine("Collision normal{0}:", col.normal);
+        //Console.WriteLine("Collision normal{0}:", col.normal);
         
         if (other is WallSide || other is WallTop) { 
-            Console.WriteLine("Console normal wall:", col.normal.x, col.normal.y);
+            //Console.WriteLine("Console normal wall:", col.normal.x, col.normal.y);
             
             if (col.normal.x < 0.5f && col.normal.y < 0.5f)
             {
@@ -89,26 +89,14 @@ public class Blob : Sprite
                 dirY *= -1;
             }
                 
-                Console.WriteLine("Console normal enemy:", col.normal.x, col.normal.y);
+                //Console.WriteLine("Console normal enemy:", col.normal.x, col.normal.y);
 
         }
         if (other is Board)
         {
-            if (col.normal.x < 0.5f && col.normal.y < 0.5f)
-            {
-                if (col.normal.x > col.normal.y)
-                {
-                    dirY *= -1;
-                }
-                if (col.normal.x < col.normal.y)
-                {
-                    dirX *= -1;
-                }
-            }
-            else
-            {
-                dirX *= -1;
-                dirY *= -1;
+            board = other as Board;
+            if(board.x > this.x){
+                Console.WriteLine(board.x - this.x);
             }
         }
 
