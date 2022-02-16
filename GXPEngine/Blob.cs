@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GXPEngine;
+using GXPEngine.Core;
+
 
     public class Blob : AnimationSprite
 {
@@ -26,15 +28,21 @@ using GXPEngine;
     {
         SetOrigin(height / 2, width / 2);
         Respawn();
+        
     }
     
     void Update()
     {
         StartGame();
-        Bounce();
 
-        x += speedX * dirX;
-        y += speedY * dirY;
+        Move(speedX * dirX, 0);
+        Move(0, speedY * dirY);
+
+        if (y > game.height - height)
+        {
+            Respawn();
+        }
+
 
         if (y < 0)
         {
@@ -67,24 +75,79 @@ using GXPEngine;
         if (Input.GetKey(Key.SPACE))
         {
             speedX = Utils.Random(-2, 2.1f);
-            speedY = 4.0f;
+
+            speedY = 2.0f;
+
+            dirX = 1.0f;
+            dirY = 1.0f;
         }
     }
 
     void OnCollision(GameObject other)
     {
-        if (other is Board) 
-        {
-            dirX *= -1;
-            dirY *= -1;
-            hasColided = true;
+        var col = collider.GetCollisionInfo(other.collider);
+        //Console.WriteLine("Collision normal{0}:", col.normal);
+        
+        if (other is WallSide || other is WallTop) { 
+            //Console.WriteLine("Console normal wall:", col.normal.x, col.normal.y);
+            
+            if (col.normal.x < 0.5f && col.normal.y < 0.5f)
+            {
+                if (col.normal.x > col.normal.y)
+                {
+                    dirY *= -1;
+                }
+                if (col.normal.x < col.normal.y)
+                {
+                    dirX *= -1;
+                }
+            }
         }
+        
         if (other is Enemy)
         {
-            dirX *= -1;
-            dirY *= -1;
-            hasColided = true;
-        } 
+            if (col.normal.x < 0.5f && col.normal.y < 0.5f)
+            {
+                if (col.normal.x > col.normal.y)
+                {
+                    dirY *= -1;
+                }
+                if (col.normal.x < col.normal.y)
+                {
+                    dirX *= -1;
+                }
+            }
+            else{
+                dirX *= -1;
+                dirY *= -1;
+            }
+                //Console.WriteLine("Console normal enemy:", col.normal.x, col.normal.y);
+        }
+        
+        if (other is Board)
+        {
+            
+            board = other as Board;
+            float xOffset = Mathf.Abs((board.x - this.x)) / 160.0f;      //214.0f;
+            speedX = 2 + xOffset;
+            speedY = 2 - xOffset;
+            if (board.x > this.x){
+               dirX = -1;
+            }
+            if (board.x < this.x)
+            {
+                dirX = 1;
+            }
+
+            /*
+            Console.WriteLine(board.x - this.x);
+            Console.WriteLine(board.width / 2 + this.width);
+            Console.WriteLine("X offest is: {0}", xOffset);
+            */
+
+            //dirX *= -1;
+            dirY = -1;
+        }
     }
 
     void Respawn()
@@ -132,6 +195,7 @@ using GXPEngine;
                 break;
         }
     }
+
 
     void TimerCycle()
     {

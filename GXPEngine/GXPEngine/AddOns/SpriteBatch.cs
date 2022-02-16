@@ -25,7 +25,7 @@ namespace GXPEngine {
 		/// Create a new SpriteBatch game object. 
 		/// After adding sprites as child to this game object, call the Freeze method to started batched drawing.
 		/// </summary>
-		public SpriteBatch() : base(false) {
+		public SpriteBatch(string v, string v1) : base(false) {
 			renderers = new Dictionary<Texture2D, BufferRenderer>();
 		}
 
