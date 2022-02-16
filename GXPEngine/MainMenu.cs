@@ -23,7 +23,7 @@ namespace GXPEngine
             AddChild(highScore);
 
         }
-
+        
         void Update()
         {
             SelectNumber();

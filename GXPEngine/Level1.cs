@@ -32,6 +32,10 @@ namespace GXPEngine
             Blob blob = new Blob();
             AddChild(blob);
 
+            HUD hud;
+            hud = new HUD(blob);
+            AddChild(hud);
+
         }
 
         private void EnemySpawn()

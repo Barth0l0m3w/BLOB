@@ -21,11 +21,19 @@ public class Blob : AnimationSprite
     const int NORMAL = 0;
     const int BOUNCING = 1;
     int currentState = NORMAL;
+    public int _score;
 
     public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
         SetOrigin(height / 2, width / 2);
         Respawn();
+
+        _score = 0;
+    }
+
+    public int GetScore()
+    {
+        return _score;
     }
 
     void Update()
@@ -84,6 +92,7 @@ public class Blob : AnimationSprite
             dirX *= -1;
             dirY *= -1;
             hasColided = true;
+            _score = _score + 1;
         }
     }
 

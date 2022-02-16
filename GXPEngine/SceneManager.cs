@@ -31,6 +31,7 @@ namespace GXPEngine
 
             _instance = this;
         }
+
         void Update()
         {
 
