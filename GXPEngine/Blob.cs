@@ -58,7 +58,6 @@ using GXPEngine;
             {
                 animTimer = 0;
                 hasColided = false;
-                
             }
         }
     }

@@ -38,11 +38,14 @@
   <ItemGroup>
     <Compile Include="Blob.cs" />
     <Compile Include="Board.cs" />
+    <Compile Include="Button.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
     <Compile Include="GXPEngine\AddOns\TiledLoader.cs" />
-    <Compile Include="levelManager.cs" />
+    <Compile Include="Level1.cs" />
+    <Compile Include="SceneManager.cs" />
+    <Compile Include="LevelHighScore.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Core\Canvas.cs" />
