@@ -29,6 +29,9 @@ namespace GXPEngine
             Board board = new Board();
             AddChild(board);
 
+            Babies babie = new Babies();
+            AddChild(babie);
+
             Blob blob = new Blob();
             AddChild(blob);
 

@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Babies.cs" />
     <Compile Include="Blob.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Button.cs" />
