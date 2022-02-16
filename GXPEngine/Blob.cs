@@ -5,31 +5,35 @@ using System.Text;
 using GXPEngine;
 using GXPEngine.Core;
 
-public class Blob : Sprite
-    {
+
+    public class Blob : AnimationSprite
+{
+    public bool hasColided;
+
     float speedX = 0f;
     float speedY = 0f;
 
     float dirX = 1.0f;
     float dirY = 1.0f;
+    
+    private float timer = 0;
+    private float animTimer = 0;
+    private float waitTime = 0.4f;
+    
+    const int NORMAL = 0;
+    const int BOUNCING = 1;
+    int currentState = NORMAL;
 
-    Board board;
-
-    public Blob() : base("blob.png")
+    public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
+        SetOrigin(height / 2, width / 2);
         Respawn();
         
-
     }
+    
     void Update()
     {
         StartGame();
-        //Bounce();
-
-        /*
-        x += speedX * dirX;
-        y += speedY * dirY;
-        */
 
         Move(speedX * dirX, 0);
         Move(0, speedY * dirY);
@@ -39,19 +43,43 @@ public class Blob : Sprite
             Respawn();
         }
 
-        
 
+        if (y < 0)
+        {
+            speedY *= -1;
+        }
+
+        if (y > game.height - height)
+        {
+            Respawn();
+        }
+
+        AnimateCharacter();
+        TimerCycle();
+
+        timer += Time.deltaTime / 1000.0f;
+        Console.WriteLine(animTimer);
+        if (hasColided)
+        {
+            animTimer += Time.deltaTime / 1000.0f;
+            if (animTimer > waitTime)
+            {
+                animTimer = 0;
+                hasColided = false;
+            }
+        }
     }
 
-    private void StartGame() {
+    private void StartGame() 
+    {
         if (Input.GetKey(Key.SPACE))
         {
             speedX = Utils.Random(-2, 2.1f);
+
             speedY = 2.0f;
 
             dirX = 1.0f;
             dirY = 1.0f;
-
         }
     }
 
@@ -74,9 +102,8 @@ public class Blob : Sprite
                     dirX *= -1;
                 }
             }
-            
-
         }
+        
         if (other is Enemy)
         {
             if (col.normal.x < 0.5f && col.normal.y < 0.5f)
@@ -94,10 +121,9 @@ public class Blob : Sprite
                 dirX *= -1;
                 dirY *= -1;
             }
-                
                 //Console.WriteLine("Console normal enemy:", col.normal.x, col.normal.y);
-
         }
+        
         if (other is Board)
         {
             
@@ -122,8 +148,6 @@ public class Blob : Sprite
             //dirX *= -1;
             dirY = -1;
         }
-
-        
     }
 
     void Respawn()
@@ -134,7 +158,54 @@ public class Blob : Sprite
         speedY = 0;
     }
 
-    
+    void Bounce() 
+    {
+        if (y < 0 - height)
+        {
+            dirY *= -1;
+        }
 
+        if (y > game.height + height)
+        {
+            Respawn();
+        }
+
+        if (x < 0 - width / 2)
+        {
+            dirX *= -1;
+        }
+
+        if (x > game.width + width)
+        {
+            dirX *= -1;
+        }
+    }
+
+    void AnimateCharacter()
+    {
+        switch (currentState)
+        {
+            case BOUNCING:
+            SetCycle(1, 7);
+                Animate(0.2f);
+                break;
+            case NORMAL:
+            SetCycle(0, 1);
+                Animate(0.2f);
+                break;
+        }
+    }
+
+
+    void TimerCycle()
+    {
+        if (hasColided)
+        {
+            currentState = BOUNCING;
+        } else
+        {
+            currentState = NORMAL;
+        }
+    } 
 }
 

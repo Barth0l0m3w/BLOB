@@ -12,9 +12,11 @@ using GXPEngine;
 
     public Board() : base("platform.png")
     {
-        SetOrigin(width / 2 , height / 2);
+
+        SetOrigin(height / 2, width / 2);
+
         this.x = game.width / 2;
-        this.y = game.height - 100;
+        this.y = game.height;
 
     }
 
@@ -40,18 +42,14 @@ using GXPEngine;
     {
         if (Input.GetKey(Key.LEFT))
         {
-            speedX -= 0.3f;
+            speedX -= 0.8f;
         }
         if (Input.GetKey(Key.RIGHT))
         {
-            speedX += 0.3f;
+            speedX += 0.8f;
         }
         MoveUntilCollision(speedX, 0);
         speedX *= 0.9f;
-    }
-    void OnCollision(GameObject other)
-    {
-    
     }
 }
 
