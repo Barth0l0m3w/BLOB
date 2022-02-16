@@ -14,7 +14,7 @@ namespace GXPEngine
 
         private float timer = 0;
         private float animTimer = 0;
-        private float waitTime = 2;
+        private float waitTime = 5;
 
         public Level1()
         {

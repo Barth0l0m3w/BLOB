@@ -9,7 +9,7 @@ namespace GXPEngine
     {
         Button startButton;
         Button highScore;
-        private int buttonSelected = 0;
+        private int buttonSelected = 1;
 
         public MainMenu()
         {
@@ -65,14 +65,20 @@ namespace GXPEngine
                 buttonSelected += 1;
                 //Console.WriteLine("right clicked");
             }
+
             if (Input.GetKeyUp(Key.LEFT))
             {
                 buttonSelected -= 1;
             }
 
-            if (buttonSelected <= 0)
+            if (buttonSelected <= 1)
             {
-                buttonSelected = 0;
+                buttonSelected = 1;
+            }
+
+            if (buttonSelected >= 2)
+            {
+                buttonSelected = 2;
             }
         }
 
