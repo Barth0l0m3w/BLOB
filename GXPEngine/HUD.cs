@@ -12,19 +12,16 @@ namespace GXPEngine
     {
         private Blob _blob;
 
-        private EasyDraw _score;
-        private EasyDraw healthUI;
-
-
         public HUD(Blob blob) : base(1366, 768, false)
         {
             _blob = blob;
+            //Utils.LoadFont("LuckiestGuy.ttf", 32);
         }
 
         void Update()
         {
             graphics.Clear(Color.Empty);
-            graphics.DrawString("score:" + _blob.GetScore(), SystemFonts.DefaultFont, Brushes.White, 0, 0); 
+            graphics.DrawString("score:" + _blob.GetScore(), Utils.LoadFont("LuckiestGuy.ttf", 32), Brushes.White, 0, 720); 
         }
     }
 }
