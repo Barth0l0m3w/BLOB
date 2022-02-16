@@ -5,8 +5,8 @@ using System.Text;
 using GXPEngine;
 
 
-    public class Board: Sprite
-    {
+public class Board : Sprite
+{
 
     public float speedX = 0f;
 
@@ -15,7 +15,6 @@ using GXPEngine;
         SetOrigin(height / 2, width / 2);
         this.x = game.width / 2;
         this.y = game.height;
-
     }
 
     void Update()
@@ -31,7 +30,6 @@ using GXPEngine;
         {
             x = 1;
         }
-
     }
 
     private void applyWalking()

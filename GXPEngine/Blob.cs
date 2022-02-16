@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using GXPEngine;
 
-    public class Blob : AnimationSprite
+public class Blob : AnimationSprite
 {
     public bool hasColided;
 
@@ -13,11 +13,11 @@ using GXPEngine;
 
     float dirX = 1.0f;
     float dirY = 1.0f;
-    
+
     private float timer = 0;
     private float animTimer = 0;
     private float waitTime = 0.4f;
-    
+
     const int NORMAL = 0;
     const int BOUNCING = 1;
     int currentState = NORMAL;
@@ -27,7 +27,7 @@ using GXPEngine;
         SetOrigin(height / 2, width / 2);
         Respawn();
     }
-    
+
     void Update()
     {
         StartGame();
@@ -62,7 +62,7 @@ using GXPEngine;
         }
     }
 
-    private void StartGame() 
+    private void StartGame()
     {
         if (Input.GetKey(Key.SPACE))
         {
@@ -73,7 +73,7 @@ using GXPEngine;
 
     void OnCollision(GameObject other)
     {
-        if (other is Board) 
+        if (other is Board)
         {
             dirX *= -1;
             dirY *= -1;
@@ -84,7 +84,7 @@ using GXPEngine;
             dirX *= -1;
             dirY *= -1;
             hasColided = true;
-        } 
+        }
     }
 
     void Respawn()
@@ -95,7 +95,7 @@ using GXPEngine;
         speedY = 0;
     }
 
-    void Bounce() 
+    void Bounce()
     {
         if (y < 0 - height)
         {
@@ -123,11 +123,11 @@ using GXPEngine;
         switch (currentState)
         {
             case BOUNCING:
-            SetCycle(1, 7);
+                SetCycle(1, 7);
                 Animate(0.2f);
                 break;
             case NORMAL:
-            SetCycle(0, 1);
+                SetCycle(0, 1);
                 Animate(0.2f);
                 break;
         }
@@ -138,10 +138,11 @@ using GXPEngine;
         if (hasColided)
         {
             currentState = BOUNCING;
-        } else
+        }
+        else
         {
             currentState = NORMAL;
         }
-    } 
+    }
 }
 

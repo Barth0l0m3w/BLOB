@@ -11,12 +11,12 @@ public class Enemy : Sprite
     private float speed = 1f;
 
 
-    public Enemy():base ("squid.png")
+    public Enemy() : base("squid.png")
     {
         Respawn();
         SetOrigin(width / 2, height / 2);
         radians = 0;
-        SetXY(Utils.Random(100, game.width - 100) , Utils.Random(-200, 0));
+        SetXY(Utils.Random(100, game.width - 100), Utils.Random(-200, 0));
     }
 
     void Update()
@@ -48,7 +48,7 @@ public class Enemy : Sprite
             //  Time.deltaTime
             //
             LateDestroy();
-           //respawn();
+            //respawn();
         }
     }
 }

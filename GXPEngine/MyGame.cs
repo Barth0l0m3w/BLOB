@@ -5,27 +5,27 @@ using System.Collections.Generic;
 
 public class MyGame : Game
 {
-	//float enemies = 0;
+    //float enemies = 0;
 
 
-	public MyGame() : base(1366, 768, false, false)	
-	{
-		targetFps = 60;
+    public MyGame() : base(1366, 768, false, false)
+    {
+        targetFps = 60;
 
-		SceneManager sceneManager = new SceneManager();
-		AddChild(sceneManager);
+        SceneManager sceneManager = new SceneManager();
+        AddChild(sceneManager);
 
-		sceneManager.loadLevel("MainMenu");
-	}
+        sceneManager.loadLevel("MainMenu");
+    }
 
-	void Update()
+    void Update()
 
-	{
+    {
 
-	}
+    }
 
-	static void Main()
-	{
-		new MyGame().Start();
-	}
+    static void Main()
+    {
+        new MyGame().Start();
+    }
 }

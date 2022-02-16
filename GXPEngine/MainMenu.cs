@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GXPEngine
 {
-     public class MainMenu : GameObject
+    public class MainMenu : GameObject
     {
         Button startButton;
         Button highScore;
@@ -28,8 +28,8 @@ namespace GXPEngine
         {
             SelectNumber();
 
-          if (buttonSelected == 1)
-          {
+            if (buttonSelected == 1)
+            {
                 startButton.alpha = 1f;
                 highScore.alpha = 0.7f;
 
@@ -38,9 +38,9 @@ namespace GXPEngine
                     //HideMenu();
                     SceneManager.Instance.loadLevel("Level1");
                 }
-          }
-          if (buttonSelected == 2)
-          {
+            }
+            if (buttonSelected == 2)
+            {
                 highScore.alpha = 1f;
                 startButton.alpha = 0.7f;
 
@@ -50,20 +50,13 @@ namespace GXPEngine
                     SceneManager.Instance.loadLevel("LevelHighScore");
 
                 }
-          } 
-          if (buttonSelected == 0)
+            }
+            if (buttonSelected == 0)
             {
                 highScore.alpha = 0.7f;
                 startButton.alpha = 0.7f;
             }
         }
-
-        /*void HideMenu()
-        {
-            startButton.visible = false;
-            highScore.visible = false;
-            LateDestroy();
-        }*/
 
         private void SelectNumber()
         {

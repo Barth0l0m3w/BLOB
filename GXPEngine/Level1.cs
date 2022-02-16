@@ -53,7 +53,7 @@ namespace GXPEngine
             animTimer += Time.deltaTime / 1000.0f;
             if (animTimer >= waitTime)
             {
-                if (enemies.Count < 2)
+                if (enemies.Count < 10)
                 {
                     EnemySpawn();
                 }
