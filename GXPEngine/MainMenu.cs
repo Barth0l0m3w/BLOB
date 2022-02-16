@@ -21,9 +21,8 @@ namespace GXPEngine
 
             highScore = new Button(0, 0, "highScore.png");
             AddChild(highScore);
-
         }
-        
+
         void Update()
         {
             SelectNumber();
@@ -35,7 +34,6 @@ namespace GXPEngine
 
                 if (Input.GetKeyUp(Key.SPACE))
                 {
-                    //HideMenu();
                     SceneManager.Instance.loadLevel("Level1");
                 }
             }
@@ -46,9 +44,7 @@ namespace GXPEngine
 
                 if (Input.GetKeyUp(Key.SPACE))
                 {
-                    //HideMenu();
                     SceneManager.Instance.loadLevel("LevelHighScore");
-
                 }
             }
             if (buttonSelected == 0)
@@ -63,7 +59,6 @@ namespace GXPEngine
             if (Input.GetKeyUp(Key.RIGHT))
             {
                 buttonSelected += 1;
-                //Console.WriteLine("right clicked");
             }
 
             if (Input.GetKeyUp(Key.LEFT))

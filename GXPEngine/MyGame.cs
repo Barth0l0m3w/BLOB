@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class MyGame : Game
 {
-    //float enemies = 0;
-
 
     public MyGame() : base(1366, 768, false, false)
     {

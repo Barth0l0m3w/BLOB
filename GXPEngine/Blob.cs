@@ -6,7 +6,7 @@ using GXPEngine;
 
 public class Blob : AnimationSprite
 {
-    public bool hasColided;
+    private bool hasColided;
 
     float speedX = 0f;
     float speedY = 0f;
@@ -21,6 +21,7 @@ public class Blob : AnimationSprite
     const int NORMAL = 0;
     const int BOUNCING = 1;
     int currentState = NORMAL;
+
     public int _score;
 
     public Blob() : base("Blob_Spritesheet.png", 7, 1)
@@ -29,6 +30,7 @@ public class Blob : AnimationSprite
         Respawn();
 
         _score = 0;
+
     }
 
     public int GetScore()
@@ -36,6 +38,7 @@ public class Blob : AnimationSprite
         return _score;
     }
 
+ 
     void Update()
     {
         StartGame();
@@ -58,7 +61,6 @@ public class Blob : AnimationSprite
         TimerCycle();
 
         timer += Time.deltaTime / 1000.0f;
-        Console.WriteLine(animTimer);
         if (hasColided)
         {
             animTimer += Time.deltaTime / 1000.0f;

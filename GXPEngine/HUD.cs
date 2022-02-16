@@ -11,17 +11,19 @@ namespace GXPEngine
     public class HUD : Canvas
     {
         private Blob _blob;
+        private Enemy _enemy;
 
-        public HUD(Blob blob) : base(1366, 768, false)
+        public HUD(Blob blob, Enemy enemy) : base(1366, 768, false)
         {
             _blob = blob;
-            //Utils.LoadFont("LuckiestGuy.ttf", 32);
+            _enemy = enemy;
         }
 
         void Update()
         {
             graphics.Clear(Color.Empty);
-            graphics.DrawString("score:" + _blob.GetScore(), Utils.LoadFont("LuckiestGuy.ttf", 32), Brushes.White, 0, 720); 
+            graphics.DrawString("score:" + _blob.GetScore(), Utils.LoadFont("LuckiestGuy.ttf", 32), Brushes.White, 0, 720);
+            graphics.DrawString("health:" + _enemy.GetBabies(), Utils.LoadFont("LuckiestGuy.ttf", 32), Brushes.White, 1160, 720);
         }
     }
 }

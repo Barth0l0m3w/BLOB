@@ -9,8 +9,13 @@ namespace GXPEngine
     {
         public Babies() : base("Blob_Spritesheet.png", 7, 1)
         {
-            Animate(0.04f);
-            SetXY(Utils.Random(game.width/3, game.width/3 +500), 700);
+            SetScaleXY(0.75f, 0.75f);
+            SetXY(Utils.Random(game.width / 3, game.width / 3 + 500), 700);
+        }
+
+        void Update()
+        {
+            Animate(0.4f);
         }
     }
 }

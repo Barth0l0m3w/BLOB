@@ -10,6 +10,10 @@ public class Enemy : Sprite
     private float radius;
     private float speed = 1f;
 
+    public int amountBabies;
+
+    private bool low = false;
+
 
     public Enemy() : base("squid.png")
     {
@@ -17,10 +21,19 @@ public class Enemy : Sprite
         SetOrigin(width / 2, height / 2);
         radians = 0;
         SetXY(Utils.Random(100, game.width - 100), Utils.Random(-200, 0));
+
+        amountBabies = 3;
+
+    }
+    public int GetBabies()
+    {
+        return amountBabies;
     }
 
     void Update()
     {
+
+        Console.WriteLine(amountBabies);
         radius = 1;
         radians += 0.02f;
         y += speed;
@@ -34,6 +47,21 @@ public class Enemy : Sprite
         {
             Respawn();
         }
+
+        if (y == 700)
+        {
+            Console.WriteLine("low");
+            low = true;
+        }
+        if (y == 702)
+        {
+            low = false;
+        }
+        if (low)
+        {
+            amountBabies = amountBabies - 1;
+
+        }
     }
 
     void Respawn()
@@ -45,10 +73,7 @@ public class Enemy : Sprite
     {
         if (other is Blob)
         {
-            //  Time.deltaTime
-            //
             LateDestroy();
-            //respawn();
         }
     }
 }

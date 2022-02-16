@@ -19,8 +19,8 @@ namespace GXPEngine
                 }
                 return _instance;
             }
-
         }
+
         public SceneManager()
         {
             if (_instance != null)
