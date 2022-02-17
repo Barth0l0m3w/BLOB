@@ -69,7 +69,7 @@ namespace GXPEngine
             {
                 backButton.alpha = 1f;
 
-                if (Input.GetKeyUp(Key.SPACE))
+                if (Input.GetKeyDown(Key.SPACE))
                 {
                     SceneManager.Instance.loadLevel("MainMenu");
                 }
@@ -83,12 +83,12 @@ namespace GXPEngine
 
         private void SelectNumber()
         {
-            if (Input.GetKeyUp(Key.RIGHT))
+            if (Input.GetKeyDown(Key.D))
             {
                 buttonSelected += 1;
             }
 
-            if (Input.GetKeyUp(Key.LEFT))
+            if (Input.GetKeyDown(Key.A))
             {
                 buttonSelected -= 1;
             }

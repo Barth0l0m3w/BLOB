@@ -32,7 +32,7 @@ namespace GXPEngine
                 startButton.alpha = 1f;
                 highScore.alpha = 0.7f;
 
-                if (Input.GetKeyUp(Key.SPACE))
+                if (Input.GetKeyDown(Key.SPACE))
                 {
                     SceneManager.Instance.loadLevel("Level1");
                 }
@@ -42,7 +42,7 @@ namespace GXPEngine
                 highScore.alpha = 1f;
                 startButton.alpha = 0.7f;
 
-                if (Input.GetKeyUp(Key.SPACE))
+                if (Input.GetKeyDown(Key.SPACE))
                 {
                     SceneManager.Instance.loadLevel("LevelHighScore");
                 }
@@ -56,12 +56,12 @@ namespace GXPEngine
 
         private void SelectNumber()
         {
-            if (Input.GetKeyUp(Key.RIGHT))
+            if (Input.GetKeyDown(Key.D))
             {
                 buttonSelected += 1;
             }
 
-            if (Input.GetKeyUp(Key.LEFT))
+            if (Input.GetKeyUp(Key.A))
             {
                 buttonSelected -= 1;
             }

@@ -57,6 +57,10 @@ namespace GXPEngine
                     Level1 level1 = new Level1();
                     AddChild(level1);
                     break;
+                case "Death":
+                    Death death = new Death();
+                    AddChild(death);
+                    break;
                 default:
                     Console.WriteLine($"{LevelName} is not supported");
                     break;

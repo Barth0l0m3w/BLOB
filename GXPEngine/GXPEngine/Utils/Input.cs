@@ -35,7 +35,7 @@ namespace GXPEngine
 		/// Key number, use Key.KEYNAME or integer value.
 		/// </param>
 		public static bool GetKeyUp(int key) {
-			return GLContext.GetKeyUp(key);
+			return GLContext.GetKeyUp(key); 
 		}
 		
 		/// <summary>

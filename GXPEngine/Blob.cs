@@ -23,6 +23,7 @@ public class Blob : AnimationSprite
     int currentState = NORMAL;
 
     public int _score;
+    private bool reachBorder = false;
 
     public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
@@ -74,7 +75,7 @@ public class Blob : AnimationSprite
 
     private void StartGame()
     {
-        if (Input.GetKey(Key.SPACE))
+        if (Input.GetKeyDown(Key.SPACE))
         {
             speedX = Utils.Random(-2, 2.1f);
             speedY = 4.0f;
@@ -94,7 +95,15 @@ public class Blob : AnimationSprite
             dirX *= -1;
             dirY *= -1;
             hasColided = true;
-            _score = _score + 1;
+            _score = _score + 100;
+        }
+        if (other is SquidEdge)
+        {
+            if (!reachBorder)
+            {
+                reachBorder = true;
+                ((MyGame)game).amountBabies = ((MyGame)game).amountBabies - 1;
+            }
         }
     }
 

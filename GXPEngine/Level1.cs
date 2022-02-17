@@ -15,7 +15,6 @@ namespace GXPEngine
         private float waitTime = 10;
 
 
-
         public Level1()
         {
             enemies = new List<Enemy>();

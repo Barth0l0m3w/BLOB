@@ -34,15 +34,15 @@ public class Board : Sprite
 
     private void applyWalking()
     {
-        if (Input.GetKey(Key.LEFT))
+        if (Input.GetKeyDown(Key.A))
         {
             speedX -= 0.8f;
         }
-        if (Input.GetKey(Key.RIGHT))
+        if (Input.GetKeyDown(Key.D))
         {
             speedX += 0.8f;
         }
-        x += speedX;
+        x += speedX; 
         speedX *= 0.9f;
     }
 }

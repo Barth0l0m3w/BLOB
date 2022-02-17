@@ -16,13 +16,17 @@ public class MyGame : Game
 
         sceneManager.loadLevel("MainMenu");
 
-
     }
+
 
     void Update()
 
     {
 
+        if (amountBabies == 0)
+        {
+            SceneManager.Instance.loadLevel("Death");
+        }
     }
 
     static void Main()
