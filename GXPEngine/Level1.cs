@@ -65,9 +65,9 @@ namespace GXPEngine
             hud = new HUD(blob, enemy);
             AddChild(hud);
 
-            bgLvl1.Play();
+            /*bgLvl1.Play();
             MyGame.soundChannel = bgLvl1.Play();
-            MyGame.soundChannel.Volume = 0.8f;
+            MyGame.soundChannel.Volume = 0.8f;*/
 
             EnemySpawn();
             EnemySpawn();

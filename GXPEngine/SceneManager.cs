@@ -9,6 +9,8 @@ namespace GXPEngine
     {
         private int whatLevel = 0;
         private static SceneManager _instance;
+        public static SoundChannel soundChannel = new SoundChannel(0);
+        Sound menuSound = new Sound("Main_Menu_Music_Project_Lift_Off.Wav", true, false);
         public static SceneManager Instance
         {
             get
@@ -48,6 +50,8 @@ namespace GXPEngine
                 case "MainMenu":
                     MainMenu mainMenu = new MainMenu();
                     AddChild(mainMenu);
+                    soundChannel = menuSound.Play();
+                    soundChannel.Volume = 0.8f;
                     break;
                 case "LevelHighScore":
                     LevelHighScore level2 = new LevelHighScore();
@@ -56,7 +60,7 @@ namespace GXPEngine
                 case "Level1":
                     Level1 level1 = new Level1();
                     AddChild(level1);
-                    MyGame.soundChannel.Stop();
+                    soundChannel.Stop();
                     break;
                 case "Death":
                     Death death = new Death();

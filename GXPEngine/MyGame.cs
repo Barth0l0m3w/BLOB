@@ -7,7 +7,7 @@ public class MyGame : Game
 {
     public int amountBabies = 10;
     bool _amountBabies = false;
-    public static SoundChannel soundChannel = new SoundChannel(0);
+    
 
     public MyGame() : base(1366, 768, false, false)
     {
