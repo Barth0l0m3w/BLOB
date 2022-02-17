@@ -14,7 +14,7 @@ namespace GXPEngine
         public Babies() : base("Blob_Spritesheet.png", 7, 1)
         {
             SetScaleXY(0.75f, 0.75f);
-            SetXY(Utils.Random(game.width / 3 - 50, game.width / 3 + 450), 700);
+            SetXY(Utils.Random(game.width / 3 - 50, game.width / 3 + 400), 700);
         }
 
         void Update()
