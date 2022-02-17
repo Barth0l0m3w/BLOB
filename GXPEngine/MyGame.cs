@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class MyGame : Game
 {
     public int amountBabies = 3;
+    bool _amountBabies = false;
 
     public MyGame() : base(1366, 768, false, false)
     {
@@ -22,11 +23,19 @@ public class MyGame : Game
     void Update()
 
     {
-
         if (amountBabies == 0)
         {
-            SceneManager.Instance.loadLevel("Death");
+            _amountBabies = true;
+
+            
         }
+        if (_amountBabies == true)
+        {
+            SceneManager.Instance.loadLevel("Death");
+            _amountBabies = false;
+            amountBabies = 3;
+        }
+
     }
 
     static void Main()

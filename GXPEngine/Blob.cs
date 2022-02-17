@@ -103,6 +103,7 @@ public class Blob : AnimationSprite
             {
                 reachBorder = true;
                 ((MyGame)game).amountBabies = ((MyGame)game).amountBabies - 1;
+                
             }
         }
     }
@@ -113,6 +114,8 @@ public class Blob : AnimationSprite
         y = (game.height - this.height) / 2;
         speedX = 0;
         speedY = 0;
+
+        reachBorder = false;
     }
 
     void Bounce()
