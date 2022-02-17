@@ -25,22 +25,17 @@ public class Blob : AnimationSprite
     const float SPEED = 4.0f;
     int currentState = NORMAL;
 
-
     public int _score;
     private bool reachBorder = false;
 
-   
-
+    Board board = new Board();
 
     public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
         SetOrigin(height / 2, width / 2);
         Respawn();
 
-
         _score = 0;
-
-
     }
 
     public int GetScore()
@@ -48,7 +43,6 @@ public class Blob : AnimationSprite
         return _score;
     }
 
- 
     void Update()
     {
         StartGame();
@@ -91,13 +85,31 @@ public class Blob : AnimationSprite
 
     void OnCollision(GameObject other)
     {
-
         var col = collider.GetCollisionInfo(other.collider);
         //Console.WriteLine("Collision normal{0}:", col.normal);
-        
-        if (other is WallSide || other is WallTop) { 
+
+        if (other is WallSide || other is WallTop)
+        {
             //Console.WriteLine("Console normal wall:", col.normal.x, col.normal.y);
-            
+
+            if (col.normal.x < 0.5f && col.normal.y < 0.5f)
+            {
+                if (col.normal.x > col.normal.y)
+                {
+                    dirY *= -1;
+                }
+                if (col.normal.x < col.normal.y)
+                {
+                    dirX *= -1;
+                }
+            }
+        }
+
+        if (other is Enemy)
+        {
+            hasColided = true;
+            currentState = 
+            _score += 100;
             if (col.normal.x < 0.5f && col.normal.y < 0.5f)
             {
                 if (col.normal.x > col.normal.y)
@@ -110,10 +122,12 @@ public class Blob : AnimationSprite
                 }
             }
 
+            else
+            {
+                dirX *= -1;
+                dirY *= -1;
+            }
         }
-        
-        if (other is Enemy)
-        {
 
         if (other is SquidEdge)
         {
@@ -121,44 +135,25 @@ public class Blob : AnimationSprite
             {
                 reachBorder = true;
                 ((MyGame)game).amountBabies = ((MyGame)game).amountBabies - 1;
-                
             }
-
-            if (col.normal.x < 0.5f && col.normal.y < 0.5f)
-            {
-                if (col.normal.x > col.normal.y)
-                {
-                    dirY *= -1;
-                }
-                if (col.normal.x < col.normal.y)
-                {
-                    dirX *= -1;
-                }
-            }
-            else{
-                dirX *= -1;
-                dirY *= -1;
-            }
-                
         }
-        
+
         if (other is Board)
         {
-            
+            hasColided = true;
             board = other as Board;
-            float xOffset = Mathf.Abs((board.x - this.x)) / 160.0f;      //214.0f;
+            float xOffset = Mathf.Abs((board.x - this.x)) / 160.0f;
             speedX = SPEED + xOffset;
             speedY = SPEED - xOffset;
-            if (board.x > this.x){
-               dirX = -1;
+            if (board.x > this.x)
+            {
+                dirX = -1;
             }
             if (board.x < this.x)
             {
                 dirX = 1;
             }
-
             dirY = -1;
-
         }
     }
 
@@ -171,8 +166,6 @@ public class Blob : AnimationSprite
 
         reachBorder = false;
     }
-
-
 
     void AnimateCharacter()
     {
@@ -188,7 +181,6 @@ public class Blob : AnimationSprite
                 break;
         }
     }
-
 
     void TimerCycle()
     {

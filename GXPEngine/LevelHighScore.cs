@@ -36,16 +36,9 @@ namespace GXPEngine
 
             lines = new EasyDraw(1366, 768);
 
-            /*lucky = Utils.LoadFont("LuckiestGuy.ttf", 32);
-            lines.TextFont(lucky);
-            lines.Fill(Color.White);
-            lines.TextAlign(CenterMode.Center, CenterMode.Min);
-            lines.SetXY(0, 300);*/
-
             string[] hs = {"11. raul 300", "10. timon 800", "9. Jan 1000", "8. zehra 1100", "7. Salvador 1400", "6. delano 1600", "5. nathan 2100", "4. luniyo 2200", "3. kamila 2400", "2. nathalie 2700", "1. mario 5100" };
             for (int i = hs.Length; i > 0; i--)
             {
-
                 lucky = Utils.LoadFont("LuckiestGuy.ttf", 25);
                 lines.TextFont(lucky);
                 lines.Fill(Color.White);
@@ -53,11 +46,7 @@ namespace GXPEngine
                 lines.SetXY(0, 200);
                 lines.Text(hs[i - 1], 550, 10 + 45 * num);
                 num++;
-                // y++;
             }
-            //lines.Text("name:   3400" + "name:   3400" + "name:   3400" + "name:   3400");
-
-
             AddChild(lines);
         }
 

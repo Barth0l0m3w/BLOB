@@ -10,7 +10,7 @@ namespace GXPEngine
         public SquidEdge() : base("Horizontal_Border_Vine_Placeholder.png")
         {
             SetXY(0, 700);
-            alpha = 0.2f;
+            alpha = 0f;
         }
     }
 }

@@ -13,6 +13,7 @@ using GXPEngine;
         SetOrigin(this.width / 2, this.height / 2);
         this.x = posX;
         this.y = posY;
+        alpha = 0;
     }
 
     }

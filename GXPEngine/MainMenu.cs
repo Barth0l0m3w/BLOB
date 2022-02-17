@@ -37,6 +37,7 @@ namespace GXPEngine
                     SceneManager.Instance.loadLevel("Level1");
                 }
             }
+
             if (buttonSelected == 2)
             {
                 highScore.alpha = 1f;
@@ -47,6 +48,7 @@ namespace GXPEngine
                     SceneManager.Instance.loadLevel("LevelHighScore");
                 }
             }
+
             if (buttonSelected == 0)
             {
                 highScore.alpha = 0.7f;

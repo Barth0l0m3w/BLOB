@@ -8,11 +8,9 @@ public class Enemy : AnimationSprite
 {
     private float radians;
     private float radius;
-    private float speed = 0.5f;
+    private float speed = 0.35f;
 
     private bool reachBorder = false;
-
-    private bool low = false;
 
     public Enemy() : base("Squid_Spritesheet.png", 6, 1)
     {
@@ -30,7 +28,7 @@ public class Enemy : AnimationSprite
     void Update()
     {
         Animate(0.3f);
-        
+
         radius = 1;
         radians += 0.02f;
         y += speed;
@@ -48,9 +46,7 @@ public class Enemy : AnimationSprite
 
     void Respawn()
     {
-
         SetXY(Utils.Random(100, game.width - 100), Utils.Random(-300, 0));
-
     }
 
     void OnCollision(GameObject other)
@@ -61,10 +57,10 @@ public class Enemy : AnimationSprite
         }
         if (other is SquidEdge)
         {
-            if(!reachBorder)
+            if (!reachBorder)
             {
                 reachBorder = true;
-                ((MyGame)game).amountBabies = ((MyGame)game).amountBabies -1;
+                ((MyGame)game).amountBabies = ((MyGame)game).amountBabies - 1;
             }
         }
     }

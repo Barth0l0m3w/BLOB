@@ -14,7 +14,6 @@ namespace GXPEngine
         private float animTimer = 0;
         private float waitTime = 10;
 
-
         public Level1()
         {
             enemies = new List<Enemy>();
@@ -23,6 +22,20 @@ namespace GXPEngine
 
             AddChild(spriteSheet);
             spriteSheet.Animate(0.4f);
+
+            Babies babies = new Babies();
+            AddChild(babies);
+            Babies babies2 = new Babies();
+            AddChild(babies2);
+            Babies babies3 = new Babies();
+            AddChild(babies3);
+            Babies babies4 = new Babies();
+            AddChild(babies4);
+            Babies babies5 = new Babies();
+            AddChild(babies5);
+            Babies babies6 = new Babies();
+            AddChild(babies6);
+
 
             SquidEdge squidEdge = new SquidEdge();
             AddChild(squidEdge);
@@ -54,29 +67,25 @@ namespace GXPEngine
 
         private void EnemySpawn()
         {
-
             Enemy enemie = new Enemy();
             AddChild(enemie);
             enemies.Add(enemie);
-
         }
 
         void Update()
         {
-
             timer += Time.deltaTime / 1000.0f;
 
             animTimer += Time.deltaTime / 1000.0f;
             if (animTimer >= waitTime)
             {
-                if (enemies.Count < 20)
+                if (enemies.Count < 9999)
                 {
                     EnemySpawn();
                     EnemySpawn();
                 }
                 animTimer = 0;
             }
-
         }
     }
 }

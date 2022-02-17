@@ -28,7 +28,6 @@ namespace GXPEngine
                 Destroy();
                 return;
             }
-
             _instance = this;
         }
 
@@ -36,6 +35,7 @@ namespace GXPEngine
         {
 
         }
+
         public void loadLevel(string LevelName)
         {
             foreach (GameObject Child in GetChildren())
@@ -64,8 +64,6 @@ namespace GXPEngine
                 default:
                     Console.WriteLine($"{LevelName} is not supported");
                     break;
-
-
             }
         }
     }
