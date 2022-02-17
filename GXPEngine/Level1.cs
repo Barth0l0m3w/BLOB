@@ -19,12 +19,22 @@ namespace GXPEngine
         {
             enemies = new List<Enemy>();
 
-            AnimationSprite spriteSheet = new AnimationSprite("background_spritesheet.png ", 4, 1);
+            AnimationSprite spriteSheet = new AnimationSprite("background_spritesheet.png ", 4, 1, 1, false, false);
+
             AddChild(spriteSheet);
             spriteSheet.Animate(0.4f);
 
             SquidEdge squidEdge = new SquidEdge();
             AddChild(squidEdge);
+
+            WallSide wallLeft = new WallSide(0, game.height / 2);
+            AddChild(wallLeft);
+
+            WallSide wallRight = new WallSide(game.width, game.height / 2);
+            AddChild(wallRight);
+
+            WallTop wallTop = new WallTop(game.width / 2, 0);
+            AddChild(wallTop);
 
             Board board = new Board();
             AddChild(board);
@@ -53,6 +63,7 @@ namespace GXPEngine
 
         void Update()
         {
+
             timer += Time.deltaTime / 1000.0f;
 
             animTimer += Time.deltaTime / 1000.0f;

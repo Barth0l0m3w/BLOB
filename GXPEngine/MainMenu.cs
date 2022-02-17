@@ -67,6 +67,7 @@ namespace GXPEngine
             }
 
             if (buttonSelected <= 1)
+
             {
                 buttonSelected = 1;
             }
@@ -76,6 +77,5 @@ namespace GXPEngine
                 buttonSelected = 2;
             }
         }
-
     }
 }

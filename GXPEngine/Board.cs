@@ -12,24 +12,20 @@ public class Board : Sprite
 
     public Board() : base("platform.png")
     {
-        SetOrigin(height / 2, width / 2);
+
+        SetOrigin(width / 2, height / 2);
+
         this.x = game.width / 2;
-        this.y = game.height;
+
+        this.y = game.height - 100;
+
     }
 
     void Update()
     {
         applyWalking();
 
-        if (x > game.width - width)
-        {
-            x = game.width - width;
-        }
 
-        if (x < 0)
-        {
-            x = 1;
-        }
     }
 
     private void applyWalking()
@@ -42,7 +38,8 @@ public class Board : Sprite
         {
             speedX += 0.8f;
         }
-        x += speedX; 
+
+        MoveUntilCollision(speedX, 0);
         speedX *= 0.9f;
     }
 }

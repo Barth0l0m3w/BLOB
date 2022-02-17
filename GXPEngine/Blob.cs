@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GXPEngine;
+using GXPEngine.Core;
+
 
 public class Blob : AnimationSprite
 {
@@ -20,17 +22,24 @@ public class Blob : AnimationSprite
 
     const int NORMAL = 0;
     const int BOUNCING = 1;
+    const float SPEED = 4.0f;
     int currentState = NORMAL;
+
 
     public int _score;
     private bool reachBorder = false;
+
+   
+
 
     public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
         SetOrigin(height / 2, width / 2);
         Respawn();
 
+
         _score = 0;
+
 
     }
 
@@ -43,15 +52,9 @@ public class Blob : AnimationSprite
     void Update()
     {
         StartGame();
-        Bounce();
 
-        x += speedX * dirX;
-        y += speedY * dirY;
-
-        if (y < 0)
-        {
-            speedY *= -1;
-        }
+        Move(speedX * dirX, 0);
+        Move(0, speedY * dirY);
 
         if (y > game.height - height)
         {
@@ -77,26 +80,41 @@ public class Blob : AnimationSprite
     {
         if (Input.GetKeyDown(Key.SPACE))
         {
-            speedX = Utils.Random(-2, 2.1f);
-            speedY = 4.0f;
+            speedX = Utils.Random(-1 * SPEED, SPEED);
+
+            speedY = SPEED;
+
+            dirX = 1.0f;
+            dirY = 1.0f;
         }
     }
 
     void OnCollision(GameObject other)
     {
-        if (other is Board)
-        {
-            dirX *= -1;
-            dirY *= -1;
-            hasColided = true;
+
+        var col = collider.GetCollisionInfo(other.collider);
+        //Console.WriteLine("Collision normal{0}:", col.normal);
+        
+        if (other is WallSide || other is WallTop) { 
+            //Console.WriteLine("Console normal wall:", col.normal.x, col.normal.y);
+            
+            if (col.normal.x < 0.5f && col.normal.y < 0.5f)
+            {
+                if (col.normal.x > col.normal.y)
+                {
+                    dirY *= -1;
+                }
+                if (col.normal.x < col.normal.y)
+                {
+                    dirX *= -1;
+                }
+            }
+
         }
+        
         if (other is Enemy)
         {
-            dirX *= -1;
-            dirY *= -1;
-            hasColided = true;
-            _score = _score + 100;
-        }
+
         if (other is SquidEdge)
         {
             if (!reachBorder)
@@ -105,6 +123,42 @@ public class Blob : AnimationSprite
                 ((MyGame)game).amountBabies = ((MyGame)game).amountBabies - 1;
                 
             }
+
+            if (col.normal.x < 0.5f && col.normal.y < 0.5f)
+            {
+                if (col.normal.x > col.normal.y)
+                {
+                    dirY *= -1;
+                }
+                if (col.normal.x < col.normal.y)
+                {
+                    dirX *= -1;
+                }
+            }
+            else{
+                dirX *= -1;
+                dirY *= -1;
+            }
+                
+        }
+        
+        if (other is Board)
+        {
+            
+            board = other as Board;
+            float xOffset = Mathf.Abs((board.x - this.x)) / 160.0f;      //214.0f;
+            speedX = SPEED + xOffset;
+            speedY = SPEED - xOffset;
+            if (board.x > this.x){
+               dirX = -1;
+            }
+            if (board.x < this.x)
+            {
+                dirX = 1;
+            }
+
+            dirY = -1;
+
         }
     }
 
@@ -118,28 +172,7 @@ public class Blob : AnimationSprite
         reachBorder = false;
     }
 
-    void Bounce()
-    {
-        if (y < 0 - height)
-        {
-            dirY *= -1;
-        }
 
-        if (y > game.height + height)
-        {
-            Respawn();
-        }
-
-        if (x < 0 - width / 2)
-        {
-            dirX *= -1;
-        }
-
-        if (x > game.width + width)
-        {
-            dirX *= -1;
-        }
-    }
 
     void AnimateCharacter()
     {
@@ -155,6 +188,7 @@ public class Blob : AnimationSprite
                 break;
         }
     }
+
 
     void TimerCycle()
     {

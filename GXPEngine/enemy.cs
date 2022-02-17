@@ -8,7 +8,7 @@ public class Enemy : AnimationSprite
 {
     private float radians;
     private float radius;
-    private float speed = 1f;
+    private float speed = 0.5f;
 
     private bool reachBorder = false;
 
@@ -48,7 +48,9 @@ public class Enemy : AnimationSprite
 
     void Respawn()
     {
+
         SetXY(Utils.Random(100, game.width - 100), Utils.Random(-300, 0));
+
     }
 
     void OnCollision(GameObject other)
