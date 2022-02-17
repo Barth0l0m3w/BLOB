@@ -8,7 +8,7 @@ public class Enemy : Sprite
 {
     private float radians;
     private float radius;
-    private float speed = 1f;
+    private float speed = 0.5f;
 
 
     public Enemy():base ("squid.png")
@@ -39,6 +39,7 @@ public class Enemy : Sprite
     void Respawn()
     {
         SetXY(Utils.Random(100, game.width - 100), Utils.Random(-200, 0));
+        //MateiIsPapaSmurf
     }
 
     void OnCollision(GameObject other)

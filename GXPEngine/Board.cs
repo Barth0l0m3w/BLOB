@@ -13,10 +13,10 @@ using GXPEngine;
     public Board() : base("platform.png")
     {
 
-        SetOrigin(height / 2, width / 2);
+        SetOrigin(width / 2, height / 2);
 
         this.x = game.width / 2;
-        this.y = game.height;
+        this.y = game.height - 100;
 
     }
 
@@ -24,18 +24,6 @@ using GXPEngine;
     {
         applyWalking();
 
-        //applyGravity();
-        /*
-        if (x > game.width - width)
-        {
-            x = game.width - width;
-        }
-
-        if (x < 0)
-        {
-            x = 1;
-        }
-        */
     }
 
     private void applyWalking()

@@ -19,12 +19,21 @@ namespace GXPEngine
         public Level1()
         {
             enemies = new List<Enemy>();
-            AnimationSprite spriteSheet = new AnimationSprite("background_spritesheet.png ", 4, 1);
+            AnimationSprite spriteSheet = new AnimationSprite("background_spritesheet.png ", 4, 1, 1, false, false);
             AddChild(spriteSheet);
             spriteSheet.Animate(0.4f);
 
             //Enemy enemy = new Enemy();
             //AddChild(enemy);
+
+            WallSide wallLeft = new WallSide(0, game.height / 2);
+            AddChild(wallLeft);
+
+            WallSide wallRight = new WallSide(game.width, game.height / 2);
+            AddChild(wallRight);
+
+            WallTop wallTop = new WallTop(game.width / 2, 0);
+            AddChild(wallTop);
 
             Board board = new Board();
             AddChild(board);
@@ -46,6 +55,7 @@ namespace GXPEngine
         void Update()
         {
             Console.WriteLine(enemies.Count);
+            
 
             timer += Time.deltaTime / 1000.0f;
             //Console.WriteLine(animTimer);

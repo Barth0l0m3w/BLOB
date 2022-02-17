@@ -22,7 +22,10 @@ using GXPEngine.Core;
     
     const int NORMAL = 0;
     const int BOUNCING = 1;
+    const float SPEED = 4.0f;
     int currentState = NORMAL;
+
+    Board board;
 
     public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
@@ -74,9 +77,9 @@ using GXPEngine.Core;
     {
         if (Input.GetKey(Key.SPACE))
         {
-            speedX = Utils.Random(-2, 2.1f);
+            speedX = Utils.Random(-1 * SPEED, SPEED);
 
-            speedY = 2.0f;
+            speedY = SPEED;
 
             dirX = 1.0f;
             dirY = 1.0f;
@@ -129,8 +132,8 @@ using GXPEngine.Core;
             
             board = other as Board;
             float xOffset = Mathf.Abs((board.x - this.x)) / 160.0f;      //214.0f;
-            speedX = 2 + xOffset;
-            speedY = 2 - xOffset;
+            speedX = SPEED + xOffset;
+            speedY = SPEED - xOffset;
             if (board.x > this.x){
                dirX = -1;
             }
@@ -139,13 +142,6 @@ using GXPEngine.Core;
                 dirX = 1;
             }
 
-            /*
-            Console.WriteLine(board.x - this.x);
-            Console.WriteLine(board.width / 2 + this.width);
-            Console.WriteLine("X offest is: {0}", xOffset);
-            */
-
-            //dirX *= -1;
             dirY = -1;
         }
     }
@@ -158,28 +154,7 @@ using GXPEngine.Core;
         speedY = 0;
     }
 
-    void Bounce() 
-    {
-        if (y < 0 - height)
-        {
-            dirY *= -1;
-        }
-
-        if (y > game.height + height)
-        {
-            Respawn();
-        }
-
-        if (x < 0 - width / 2)
-        {
-            dirX *= -1;
-        }
-
-        if (x > game.width + width)
-        {
-            dirX *= -1;
-        }
-    }
+    
 
     void AnimateCharacter()
     {

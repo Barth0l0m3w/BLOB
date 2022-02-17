@@ -77,9 +77,13 @@ namespace GXPEngine
                 buttonSelected -= 1;
             }
 
-            if (buttonSelected <= 0)
+            if (buttonSelected <= 1)
             {
-                buttonSelected = 0;
+                buttonSelected = 1;
+            }
+            if (buttonSelected >= 2)
+            {
+                buttonSelected = 2;
             }
         }
 
