@@ -5,8 +5,8 @@ using System.Text;
 using GXPEngine;
 
 
-    public class Board: Sprite
-    {
+public class Board : Sprite
+{
 
     public float speedX = 0f;
 
@@ -16,6 +16,7 @@ using GXPEngine;
         SetOrigin(width / 2, height / 2);
 
         this.x = game.width / 2;
+
         this.y = game.height - 100;
 
     }
@@ -24,18 +25,20 @@ using GXPEngine;
     {
         applyWalking();
 
+
     }
 
     private void applyWalking()
     {
-        if (Input.GetKey(Key.LEFT))
+        if (Input.GetKeyDown(Key.A))
         {
             speedX -= 0.8f;
         }
-        if (Input.GetKey(Key.RIGHT))
+        if (Input.GetKeyDown(Key.D))
         {
             speedX += 0.8f;
         }
+
         MoveUntilCollision(speedX, 0);
         speedX *= 0.9f;
     }

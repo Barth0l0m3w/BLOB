@@ -7,24 +7,25 @@ namespace GXPEngine
 {
     public class Level1 : GameObject
     {
-        //int lvlNMB;
-
         public List<Enemy> enemies;
         public List<Enemy> toAddEnemy = new List<Enemy>();
 
         private float timer = 0;
         private float animTimer = 0;
-        private float waitTime = 2;
+        private float waitTime = 10;
+
 
         public Level1()
         {
             enemies = new List<Enemy>();
+
             AnimationSprite spriteSheet = new AnimationSprite("background_spritesheet.png ", 4, 1, 1, false, false);
+
             AddChild(spriteSheet);
             spriteSheet.Animate(0.4f);
 
-            //Enemy enemy = new Enemy();
-            //AddChild(enemy);
+            SquidEdge squidEdge = new SquidEdge();
+            AddChild(squidEdge);
 
             WallSide wallLeft = new WallSide(0, game.height / 2);
             AddChild(wallLeft);
@@ -41,6 +42,14 @@ namespace GXPEngine
             Blob blob = new Blob();
             AddChild(blob);
 
+            Enemy enemy = new Enemy();
+
+            HUD hud;
+            hud = new HUD(blob, enemy);
+            AddChild(hud);
+
+            EnemySpawn();
+            EnemySpawn();
         }
 
         private void EnemySpawn()
@@ -54,20 +63,17 @@ namespace GXPEngine
 
         void Update()
         {
-            Console.WriteLine(enemies.Count);
-            
 
             timer += Time.deltaTime / 1000.0f;
-            //Console.WriteLine(animTimer);
 
             animTimer += Time.deltaTime / 1000.0f;
             if (animTimer >= waitTime)
             {
-                if (enemies.Count < 2)
+                if (enemies.Count < 20)
                 {
                     EnemySpawn();
+                    EnemySpawn();
                 }
-                //Console.WriteLine("now");
                 animTimer = 0;
             }
 

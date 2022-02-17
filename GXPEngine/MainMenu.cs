@@ -5,11 +5,11 @@ using System.Text;
 
 namespace GXPEngine
 {
-     public class MainMenu : GameObject
+    public class MainMenu : GameObject
     {
         Button startButton;
         Button highScore;
-        private int buttonSelected = 0;
+        private int buttonSelected = 1;
 
         public MainMenu()
         {
@@ -21,71 +21,61 @@ namespace GXPEngine
 
             highScore = new Button(0, 0, "highScore.png");
             AddChild(highScore);
-
         }
 
         void Update()
         {
             SelectNumber();
 
-          if (buttonSelected == 1)
-          {
+            if (buttonSelected == 1)
+            {
                 startButton.alpha = 1f;
                 highScore.alpha = 0.7f;
 
-                if (Input.GetKeyUp(Key.SPACE))
+                if (Input.GetKeyDown(Key.SPACE))
                 {
-                    //HideMenu();
                     SceneManager.Instance.loadLevel("Level1");
                 }
-          }
-          if (buttonSelected == 2)
-          {
+            }
+            if (buttonSelected == 2)
+            {
                 highScore.alpha = 1f;
                 startButton.alpha = 0.7f;
 
-                if (Input.GetKeyUp(Key.SPACE))
+                if (Input.GetKeyDown(Key.SPACE))
                 {
-                    //HideMenu();
                     SceneManager.Instance.loadLevel("LevelHighScore");
-
                 }
-          } 
-          if (buttonSelected == 0)
+            }
+            if (buttonSelected == 0)
             {
                 highScore.alpha = 0.7f;
                 startButton.alpha = 0.7f;
             }
         }
 
-        /*void HideMenu()
-        {
-            startButton.visible = false;
-            highScore.visible = false;
-            LateDestroy();
-        }*/
-
         private void SelectNumber()
         {
-            if (Input.GetKeyUp(Key.RIGHT))
+            if (Input.GetKeyDown(Key.D))
             {
                 buttonSelected += 1;
-                //Console.WriteLine("right clicked");
             }
-            if (Input.GetKeyUp(Key.LEFT))
+
+            if (Input.GetKeyUp(Key.A))
             {
                 buttonSelected -= 1;
             }
 
             if (buttonSelected <= 1)
+
             {
                 buttonSelected = 1;
             }
+
             if (buttonSelected >= 2)
             {
                 buttonSelected = 2;
             }
         }
-
     }
 }

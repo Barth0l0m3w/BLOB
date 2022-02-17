@@ -4,23 +4,33 @@ using System.Linq;
 using System.Text;
 using GXPEngine;
 
-public class Enemy : Sprite
+public class Enemy : AnimationSprite
 {
     private float radians;
     private float radius;
     private float speed = 0.5f;
 
+    private bool reachBorder = false;
 
-    public Enemy():base ("squid.png")
+    private bool low = false;
+
+    public Enemy() : base("Squid_Spritesheet.png", 6, 1)
     {
         Respawn();
         SetOrigin(width / 2, height / 2);
         radians = 0;
-        SetXY(Utils.Random(100, game.width - 100) , Utils.Random(-200, 0));
+        SetXY(Utils.Random(100, game.width - 100), Utils.Random(-200, 0));
+        rotation = 180;
+    }
+    public int GetBabies()
+    {
+        return ((MyGame)game).amountBabies;
     }
 
     void Update()
     {
+        Animate(0.3f);
+        
         radius = 1;
         radians += 0.02f;
         y += speed;
@@ -28,28 +38,34 @@ public class Enemy : Sprite
         float myX = radius * Mathf.Cos(radians);
         x += myX;
 
-        this.rotation += 1;
+        //this.rotation += 1;
 
         if (y > game.height + height)
         {
-            Respawn();
+            LateDestroy();
         }
     }
 
     void Respawn()
     {
-        SetXY(Utils.Random(100, game.width - 100), Utils.Random(-200, 0));
-        //MateiIsPapaSmurf
+
+        SetXY(Utils.Random(100, game.width - 100), Utils.Random(-300, 0));
+
     }
 
     void OnCollision(GameObject other)
     {
         if (other is Blob)
         {
-            //  Time.deltaTime
-            //
             LateDestroy();
-           //respawn();
+        }
+        if (other is SquidEdge)
+        {
+            if(!reachBorder)
+            {
+                reachBorder = true;
+                ((MyGame)game).amountBabies = ((MyGame)game).amountBabies -1;
+            }
         }
     }
 }

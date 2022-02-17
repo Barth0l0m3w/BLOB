@@ -6,24 +6,42 @@ using System.Collections.Generic;
 public class MyGame : Game
 {
 
-	public MyGame() : base(1366, 768, false, false)	
-	{
-		targetFps = 60;
+    public int amountBabies = 3;
+    bool _amountBabies = false;
 
-		SceneManager sceneManager = new SceneManager();
-		AddChild(sceneManager);
+    public MyGame() : base(1366, 768, false, false)
+    {
+        targetFps = 60;
 
-		sceneManager.loadLevel("MainMenu");
-	}
 
-	void Update()
+        SceneManager sceneManager = new SceneManager();
+        AddChild(sceneManager);
 
-	{
+        sceneManager.loadLevel("MainMenu");
 
-	}
+    }
 
-	static void Main()
-	{
-		new MyGame().Start();
-	}
+
+    void Update()
+
+    {
+        if (amountBabies == 0)
+        {
+            _amountBabies = true;
+
+            
+        }
+        if (_amountBabies == true)
+        {
+            SceneManager.Instance.loadLevel("Death");
+            _amountBabies = false;
+            amountBabies = 3;
+        }
+
+    }
+
+    static void Main()
+    {
+        new MyGame().Start();
+    }
 }

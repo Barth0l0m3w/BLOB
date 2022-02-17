@@ -19,8 +19,8 @@ namespace GXPEngine
                 }
                 return _instance;
             }
-
         }
+
         public SceneManager()
         {
             if (_instance != null)
@@ -31,6 +31,7 @@ namespace GXPEngine
 
             _instance = this;
         }
+
         void Update()
         {
 
@@ -55,6 +56,10 @@ namespace GXPEngine
                 case "Level1":
                     Level1 level1 = new Level1();
                     AddChild(level1);
+                    break;
+                case "Death":
+                    Death death = new Death();
+                    AddChild(death);
                     break;
                 default:
                     Console.WriteLine($"{LevelName} is not supported");

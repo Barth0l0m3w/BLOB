@@ -6,34 +6,49 @@ using GXPEngine;
 using GXPEngine.Core;
 
 
-    public class Blob : AnimationSprite
+public class Blob : AnimationSprite
 {
-    public bool hasColided;
+    private bool hasColided;
 
     float speedX = 0f;
     float speedY = 0f;
 
     float dirX = 1.0f;
     float dirY = 1.0f;
-    
+
     private float timer = 0;
     private float animTimer = 0;
     private float waitTime = 0.4f;
-    
+
     const int NORMAL = 0;
     const int BOUNCING = 1;
     const float SPEED = 4.0f;
     int currentState = NORMAL;
 
-    Board board;
+
+    public int _score;
+    private bool reachBorder = false;
+
+   
+
 
     public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
         SetOrigin(height / 2, width / 2);
         Respawn();
-        
+
+
+        _score = 0;
+
+
     }
-    
+
+    public int GetScore()
+    {
+        return _score;
+    }
+
+ 
     void Update()
     {
         StartGame();
@@ -46,22 +61,10 @@ using GXPEngine.Core;
             Respawn();
         }
 
-
-        if (y < 0)
-        {
-            speedY *= -1;
-        }
-
-        if (y > game.height - height)
-        {
-            Respawn();
-        }
-
         AnimateCharacter();
         TimerCycle();
 
         timer += Time.deltaTime / 1000.0f;
-        Console.WriteLine(animTimer);
         if (hasColided)
         {
             animTimer += Time.deltaTime / 1000.0f;
@@ -73,9 +76,9 @@ using GXPEngine.Core;
         }
     }
 
-    private void StartGame() 
+    private void StartGame()
     {
-        if (Input.GetKey(Key.SPACE))
+        if (Input.GetKeyDown(Key.SPACE))
         {
             speedX = Utils.Random(-1 * SPEED, SPEED);
 
@@ -88,6 +91,7 @@ using GXPEngine.Core;
 
     void OnCollision(GameObject other)
     {
+
         var col = collider.GetCollisionInfo(other.collider);
         //Console.WriteLine("Collision normal{0}:", col.normal);
         
@@ -105,10 +109,21 @@ using GXPEngine.Core;
                     dirX *= -1;
                 }
             }
+
         }
         
         if (other is Enemy)
         {
+
+        if (other is SquidEdge)
+        {
+            if (!reachBorder)
+            {
+                reachBorder = true;
+                ((MyGame)game).amountBabies = ((MyGame)game).amountBabies - 1;
+                
+            }
+
             if (col.normal.x < 0.5f && col.normal.y < 0.5f)
             {
                 if (col.normal.x > col.normal.y)
@@ -124,7 +139,7 @@ using GXPEngine.Core;
                 dirX *= -1;
                 dirY *= -1;
             }
-                //Console.WriteLine("Console normal enemy:", col.normal.x, col.normal.y);
+                
         }
         
         if (other is Board)
@@ -143,6 +158,7 @@ using GXPEngine.Core;
             }
 
             dirY = -1;
+
         }
     }
 
@@ -152,20 +168,22 @@ using GXPEngine.Core;
         y = (game.height - this.height) / 2;
         speedX = 0;
         speedY = 0;
+
+        reachBorder = false;
     }
 
-    
+
 
     void AnimateCharacter()
     {
         switch (currentState)
         {
             case BOUNCING:
-            SetCycle(1, 7);
+                SetCycle(1, 7);
                 Animate(0.2f);
                 break;
             case NORMAL:
-            SetCycle(0, 1);
+                SetCycle(0, 1);
                 Animate(0.2f);
                 break;
         }
@@ -177,10 +195,11 @@ using GXPEngine.Core;
         if (hasColided)
         {
             currentState = BOUNCING;
-        } else
+        }
+        else
         {
             currentState = NORMAL;
         }
-    } 
+    }
 }
 
