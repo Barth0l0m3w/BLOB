@@ -56,6 +56,7 @@ namespace GXPEngine
                 case "Level1":
                     Level1 level1 = new Level1();
                     AddChild(level1);
+                    MyGame.soundChannel.Stop();
                     break;
                 case "Death":
                     Death death = new Death();

@@ -10,6 +10,8 @@ namespace GXPEngine
         Button startButton;
         Button highScore;
         private int buttonSelected = 1;
+        Sound menuSound = new Sound("Main_Menu_Music_Project_Lift_Off.Wav", true, false);
+
 
         public MainMenu()
         {
@@ -21,6 +23,9 @@ namespace GXPEngine
 
             highScore = new Button(0, 0, "highScore.png");
             AddChild(highScore);
+
+            MyGame.soundChannel = menuSound.Play();
+            MyGame.soundChannel.Volume = 0.8f;
         }
 
         void Update()

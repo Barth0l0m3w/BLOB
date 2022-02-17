@@ -10,6 +10,8 @@ namespace GXPEngine
         public List<Enemy> enemies;
         public List<Enemy> toAddEnemy = new List<Enemy>();
 
+        Sound bgLvl1 = new Sound("Gameplay_Music_Project_Lift_Off", true, false);
+
         private float timer = 0;
         private float animTimer = 0;
         private float waitTime = 10;
@@ -57,9 +59,15 @@ namespace GXPEngine
 
             Enemy enemy = new Enemy();
 
+            
+
             HUD hud;
             hud = new HUD(blob, enemy);
             AddChild(hud);
+
+            bgLvl1.Play();
+            MyGame.soundChannel = bgLvl1.Play();
+            MyGame.soundChannel.Volume = 0.8f;
 
             EnemySpawn();
             EnemySpawn();
