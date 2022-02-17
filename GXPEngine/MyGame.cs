@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class MyGame : Game
 {
+    public int amountBabies = 3;
 
     public MyGame() : base(1366, 768, false, false)
     {
@@ -14,6 +15,8 @@ public class MyGame : Game
         AddChild(sceneManager);
 
         sceneManager.loadLevel("MainMenu");
+
+
     }
 
     void Update()

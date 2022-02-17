@@ -14,6 +14,8 @@ namespace GXPEngine
         private float animTimer = 0;
         private float waitTime = 10;
 
+
+
         public Level1()
         {
             enemies = new List<Enemy>();
@@ -21,6 +23,9 @@ namespace GXPEngine
             AnimationSprite spriteSheet = new AnimationSprite("background_spritesheet.png ", 4, 1);
             AddChild(spriteSheet);
             spriteSheet.Animate(0.4f);
+
+            SquidEdge squidEdge = new SquidEdge();
+            AddChild(squidEdge);
 
             Board board = new Board();
             AddChild(board);
@@ -54,8 +59,9 @@ namespace GXPEngine
             animTimer += Time.deltaTime / 1000.0f;
             if (animTimer >= waitTime)
             {
-                if (enemies.Count < 15)
+                if (enemies.Count < 20)
                 {
+                    EnemySpawn();
                     EnemySpawn();
                 }
                 animTimer = 0;
