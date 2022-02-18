@@ -59,6 +59,7 @@ namespace GXPEngine
                 case "LevelHighScore":
                     LevelHighScore level2 = new LevelHighScore();
                     AddChild(level2);
+                    soundChannel.Stop();
                     break;
                 case "Level1":
                     Level1 level1 = new Level1();
