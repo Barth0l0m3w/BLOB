@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class MyGame : Game
 {
-    public int amountBabies = 10;
+    public int amountBabies = 1;
     bool _amountBabies = false;
     
 

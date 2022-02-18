@@ -30,12 +30,18 @@ public class Blob : AnimationSprite
 
     Board board = new Board();
 
+    Sound boardPlop = new Sound("Platformbounce.wav", false, false);
+    Sound enemyDead = new Sound("enemyded2.MP3", false, false);
+    Sound wallPlop = new Sound("wallbounce.MP3", false, false);
+    public static SoundChannel soundChannel2 = new SoundChannel(0);
+
     public Blob() : base("Blob_Spritesheet.png", 7, 1)
     {
         SetOrigin(height / 2, width / 2);
         Respawn();
 
         _score = 0;
+        soundChannel2.Volume = 1.5f;
     }
 
     public int GetScore()
@@ -45,6 +51,8 @@ public class Blob : AnimationSprite
 
     void Update()
     {
+
+
         StartGame();
 
         Move(speedX * dirX, 0);
@@ -61,10 +69,12 @@ public class Blob : AnimationSprite
         timer += Time.deltaTime / 1000.0f;
         if (hasColided)
         {
+
             animTimer += Time.deltaTime / 1000.0f;
             if (animTimer > waitTime)
             {
                 animTimer = 0;
+
                 hasColided = false;
             }
         }
@@ -84,12 +94,16 @@ public class Blob : AnimationSprite
     }
 
     void OnCollision(GameObject other)
+
     {
         var col = collider.GetCollisionInfo(other.collider);
         //Console.WriteLine("Collision normal{0}:", col.normal);
 
         if (other is WallSide || other is WallTop)
         {
+            soundChannel2 = wallPlop.Play();
+            soundChannel2.Volume = 1.2f;
+
             //Console.WriteLine("Console normal wall:", col.normal.x, col.normal.y);
 
             if (col.normal.x < 0.5f && col.normal.y < 0.5f)
@@ -107,6 +121,10 @@ public class Blob : AnimationSprite
 
         if (other is Enemy)
         {
+
+            soundChannel2 = enemyDead.Play();
+            soundChannel2.Volume = 1.2f;
+
             hasColided = true;
             currentState = 
             _score += 100;
@@ -140,6 +158,9 @@ public class Blob : AnimationSprite
 
         if (other is Board)
         {
+            soundChannel2 = boardPlop.Play();
+            soundChannel2.Volume = 1.2f;
+
             hasColided = true;
             board = other as Board;
             float xOffset = Mathf.Abs((board.x - this.x)) / 160.0f;

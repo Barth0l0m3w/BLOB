@@ -25,11 +25,11 @@ public class Board : Sprite
 
     private void applyWalking()
     {
-        if (Input.GetKeyDown(Key.A))
+        if (Input.GetKey(Key.A))
         {
             speedX -= 2.4f;
         }
-        if (Input.GetKeyDown(Key.D))
+        if (Input.GetKey(Key.D))
         {
             speedX += 2.4f;
         }
