@@ -19,16 +19,16 @@ namespace GXPEngine
             Sprite sprite = new Sprite("endingWithoutTitle.png");
             AddChild(sprite); 
 
-            _backButton = new Button(0, 50, "endingMainButton.png");
+            _backButton = new Button(80, -90, "endingMainButton.png");
             AddChild(_backButton);
 
             title = new EasyDraw(1366, 768);
-            luckyGuy = Utils.LoadFont("LuckiestGuy.ttf", 40);
+            luckyGuy = Utils.LoadFont("LuckiestGuy.ttf", 50);
             title.TextFont(luckyGuy);
             title.Fill(Color.White);
             title.TextAlign(CenterMode.Center, CenterMode.Min);
-            title.SetXY(0, 100);
-            title.Text("DEATH");
+            title.SetXY(30, 150);
+            title.Text("GAME OVER");
             AddChild(title);
         }
 
