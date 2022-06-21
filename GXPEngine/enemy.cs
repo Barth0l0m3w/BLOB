@@ -12,7 +12,7 @@ public class Enemy : AnimationSprite
 
     private bool reachBorder = false;
 
-    public Enemy() : base("Squid_Spritesheet.png", 6, 1)
+    public Enemy() : base("images/Squid_Spritesheet.png", 6, 1)
     {
         Respawn();
         SetOrigin(width / 2, height / 2);

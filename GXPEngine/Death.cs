@@ -16,14 +16,14 @@ namespace GXPEngine
 
         public Death()
         {
-            Sprite sprite = new Sprite("endingWithoutTitle.png");
+            Sprite sprite = new Sprite("images/endingWithoutTitle.png");
             AddChild(sprite); 
 
-            _backButton = new Button(80, -90, "endingMainButton.png");
+            _backButton = new Button(80, -90, "button/endingMainButton.png");
             AddChild(_backButton);
 
             title = new EasyDraw(1366, 768);
-            luckyGuy = Utils.LoadFont("LuckiestGuy.ttf", 50);
+            luckyGuy = Utils.LoadFont("fonds/LuckiestGuy.ttf", 50);
             title.TextFont(luckyGuy);
             title.Fill(Color.White);
             title.TextAlign(CenterMode.Center, CenterMode.Min);

@@ -11,7 +11,7 @@ namespace GXPEngine
         private static SceneManager _instance;
 
         private SoundChannel soundChannel = new SoundChannel(0);
-        Sound menuSound = new Sound("Main_Menu_Music_Project_Lift_Off.Wav", true, false);
+        Sound menuSound = new Sound("music/Main_Menu_Music_Project_Lift_Off.Wav", true, false);
        // Sound bgLvl1 = new Sound("Gameplay_Music_Project_Lift_Off", true, false);
 
         public static SceneManager Instance

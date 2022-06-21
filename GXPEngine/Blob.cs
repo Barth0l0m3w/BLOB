@@ -30,12 +30,12 @@ public class Blob : AnimationSprite
 
     Board board = new Board();
 
-    Sound boardPlop = new Sound("Platformbounce.wav", false, false);
-    Sound enemyDead = new Sound("enemyded2.MP3", false, false);
-    Sound wallPlop = new Sound("wallbounce.MP3", false, false);
+    Sound boardPlop = new Sound("sounds/Platformbounce.wav", false, false);
+    Sound enemyDead = new Sound("sounds/enemyded2.MP3", false, false);
+    Sound wallPlop = new Sound("sounds/wallbounce.MP3", false, false);
     public static SoundChannel soundChannel2 = new SoundChannel(0);
 
-    public Blob() : base("Blob_Spritesheet.png", 7, 1)
+    public Blob() : base("images/Blob_Spritesheet.png", 7, 1)
     {
         SetOrigin(height / 2, width / 2);
         Respawn();
@@ -73,7 +73,7 @@ public class Blob : AnimationSprite
             animTimer += Time.deltaTime / 1000.0f;
             if (animTimer > waitTime)
             {
-                animTimer = 0;
+                animTimer = 0; 
 
                 hasColided = false;
             }

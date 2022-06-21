@@ -18,7 +18,7 @@ namespace GXPEngine
         {
             enemies = new List<Enemy>();
 
-            AnimationSprite spriteSheet = new AnimationSprite("background_spritesheet.png ", 4, 1, 1, false, false);
+            AnimationSprite spriteSheet = new AnimationSprite("images/background_spritesheet.png ", 4, 1, 1, false, false);
 
             AddChild(spriteSheet);
             spriteSheet.Animate(0.4f);

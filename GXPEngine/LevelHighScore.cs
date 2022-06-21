@@ -19,14 +19,14 @@ namespace GXPEngine
 
         public LevelHighScore()
         {
-            Sprite sprite = new Sprite("highScoreBackGround.png");
+            Sprite sprite = new Sprite("images/highScoreBackGround.png");
             AddChild(sprite);
 
-            backButton = new Button(0, 0, "backButton.png");
+            backButton = new Button(0, 0, "images/backButton.png");
             AddChild(backButton);
 
             title = new EasyDraw(1366, 768);
-            luckyGuy = Utils.LoadFont("LuckiestGuy.ttf", 40);
+            luckyGuy = Utils.LoadFont("fonds/LuckiestGuy.ttf", 40);
             title.TextFont(luckyGuy);
             title.Fill(Color.White);
             title.TextAlign(CenterMode.Center, CenterMode.Min);
@@ -36,10 +36,10 @@ namespace GXPEngine
 
             lines = new EasyDraw(1366, 768);
 
-            string[] hs = {"11. raul 300", "10. timon 800", "9. Jan 1000", "8. zehra 1100", "7. Salvador 1400", "6. delano 1600", "5. nathan 2100", "4. luniyo 2200", "3. kamila 2400", "2. nathalie 2700", "1. mario 5100" };
+            string[] hs = {"11. raul 300", "10. timon 800", "9. Jan 1000", "8. zehra 1100", "7. Salvador 1400", "6. delano 1600", "5. nathan 2100", "4. luniyo 2200", "3. kama 2500", "2. nathalie 4800", "1. mario 5100" };
             for (int i = hs.Length; i > 0; i--)
             {
-                lucky = Utils.LoadFont("LuckiestGuy.ttf", 25);
+                lucky = Utils.LoadFont("fonds/LuckiestGuy.ttf", 25);
                 lines.TextFont(lucky);
                 lines.Fill(Color.White);
                 lines.TextAlign(CenterMode.Min, CenterMode.Min);

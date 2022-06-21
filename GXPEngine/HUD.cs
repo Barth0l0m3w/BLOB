@@ -22,8 +22,8 @@ namespace GXPEngine
         void Update()
         {
             graphics.Clear(Color.Empty);
-            graphics.DrawString("score:" + _blob.GetScore(), Utils.LoadFont("LuckiestGuy.ttf", 32), Brushes.White, 5, 720);
-            graphics.DrawString("health:" + _enemy.GetBabies(), Utils.LoadFont("LuckiestGuy.ttf", 32), Brushes.White, 1150, 720);
+            graphics.DrawString("score:" + _blob.GetScore(), Utils.LoadFont("fonds/LuckiestGuy.ttf", 32), Brushes.White, 5, 720);
+            graphics.DrawString("health:" + _enemy.GetBabies(), Utils.LoadFont("fonds/LuckiestGuy.ttf", 32), Brushes.White, 1150, 720);
         }
     }
 }

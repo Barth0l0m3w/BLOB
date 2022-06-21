@@ -1,5 +1,5 @@
 using System;									
-using GXPEngine;                                
+using GXPEngine;                            
 using System.Drawing;
 using System.Collections.Generic;
 
@@ -8,7 +8,6 @@ public class MyGame : Game
     public int amountBabies = 10;
     bool _amountBabies = false;
     
-
     public MyGame() : base(1366, 768, false, false)
     {
         targetFps = 60;
@@ -30,7 +29,7 @@ public class MyGame : Game
         {
             SceneManager.Instance.loadLevel("Death");
             _amountBabies = false;
-            amountBabies = 10;
+            amountBabies = 1;
         }
     }
 

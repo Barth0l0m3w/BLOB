@@ -9,7 +9,7 @@ public class Board : Sprite
 {
     public float speedX = 0f;
 
-    public Board() : base("platform.png")
+    public Board() : base("images/platform.png")
     {
         SetOrigin(width / 2, height / 2);
 

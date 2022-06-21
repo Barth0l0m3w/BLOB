@@ -11,20 +11,16 @@ namespace GXPEngine
         Button highScore;
         private int buttonSelected = 1;
         
-
-
         public MainMenu()
         {
-            Sprite backGround = new Sprite("homescreen.png");
+            Sprite backGround = new Sprite("images/homescreen.png");
             AddChild(backGround);
 
-            startButton = new Button(0, 0, "startButton.png");
+            startButton = new Button(0, 0, "images/startButton.png");
             AddChild(startButton);
 
-            highScore = new Button(0, 0, "highScore.png");
-            AddChild(highScore);
-
-            
+            highScore = new Button(0, 0, "images/highScore.png");
+            AddChild(highScore);   
         }
 
         void Update()

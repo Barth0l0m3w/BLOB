@@ -11,7 +11,7 @@ namespace GXPEngine
         private float radius;
         private float speed = 0.35f;
 
-        public Babies() : base("Blob_Spritesheet.png", 7, 1)
+        public Babies() : base("images/Blob_Spritesheet.png", 7, 1)
         {
             SetScaleXY(0.75f, 0.75f);
             SetXY(Utils.Random(game.width / 3 - 50, game.width / 3 + 400), 700);
